@@ -684,7 +684,9 @@ std::ostream& operator<<(std::ostream& os, const Branch& b){
 // [[Rcpp::export]]
 double random_branch() {
   neurostr::Branch b;
-  return b.length();
+  // seems to throw seg fault 
+  //return b.length();
+  return 0.0;
 }
 
 
