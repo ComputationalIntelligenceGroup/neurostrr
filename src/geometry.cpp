@@ -935,6 +935,14 @@ std::ostream& TriangleMesh::toJSON(std::ostream& os){
   return os;
 }
 
+
+
+
+}  // namespace geoutils
+}  // namespace neurostr
+
+using point_type = neurostr::point_type ;
+
 // [[Rcpp::export]]
 double random_barycenter() {
    std::vector<point_type> a(2);
@@ -942,13 +950,9 @@ double random_barycenter() {
    a.push_back(p);
    // point_type p(0, 1, 9);
    a.push_back(p);
-   point_type b = barycenter(a);
+   point_type b = neurostr::geometry::barycenter(a);
    return b.get<0>();
 }
-
-
-}  // namespace geoutils
-}  // namespace neurostr
 
 
 /*** R
