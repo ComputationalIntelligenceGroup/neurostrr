@@ -16,6 +16,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// random_node
+double random_node();
+RcppExport SEXP _neurostrcpp_random_node() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(random_node());
+    return rcpp_result_gen;
+END_RCPP
+}
 // timesTwo
 NumericVector timesTwo(NumericVector x);
 RcppExport SEXP _neurostrcpp_timesTwo(SEXP xSEXP) {
@@ -30,6 +40,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_neurostrcpp_random_barycenter", (DL_FUNC) &_neurostrcpp_random_barycenter, 0},
+    {"_neurostrcpp_random_node", (DL_FUNC) &_neurostrcpp_random_node, 0},
     {"_neurostrcpp_timesTwo", (DL_FUNC) &_neurostrcpp_timesTwo, 1},
     {NULL, NULL, 0}
 };

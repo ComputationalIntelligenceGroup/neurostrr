@@ -5,6 +5,10 @@ random_barycenter <- function() {
     .Call('_neurostrcpp_random_barycenter', PACKAGE = 'neurostrcpp')
 }
 
+random_node <- function() {
+    .Call('_neurostrcpp_random_node', PACKAGE = 'neurostrcpp')
+}
+
 timesTwo <- function(x) {
     .Call('_neurostrcpp_timesTwo', PACKAGE = 'neurostrcpp', x)
 }
