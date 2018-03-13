@@ -936,8 +936,6 @@ std::ostream& TriangleMesh::toJSON(std::ostream& os){
 }
 
 
-
-
 }  // namespace geoutils
 }  // namespace neurostr
 

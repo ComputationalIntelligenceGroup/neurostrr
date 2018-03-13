@@ -213,9 +213,6 @@ namespace neurostr{
 }// namespace neurostr
 
 
-
-
-
 // [[Rcpp::export]]
 double random_node() {
   neurostr::Node n;
