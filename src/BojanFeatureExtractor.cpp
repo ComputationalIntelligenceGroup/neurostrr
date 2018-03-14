@@ -137,21 +137,20 @@ void print_node_measures(const neurostr::Node& b, std::ostream& os){
 //'
 //' @export
 // [[Rcpp::export]]
-void compute_features(std::string ifile)
+std::string compute_features(std::string ifile)
 {
 
-  std::stringstream buffer;
+  std::stringstream outbuffer;
   // Read
   auto r = neurostr::io::read_file_by_ext(ifile);
 
   // Measure each neurite and output report
   bool first = true;
-  std::cout << "[" << std::endl;
+  outbuffer << "[" << std::endl;
 
   // For each neuron
   for(auto n_it = r->begin(); n_it != r->end(); ++n_it){
     neurostr::Neuron& n = *n_it;
-    std::cout << "a neuron" << std::endl;
 
     std::vector<ns::const_node_reference> nodes;
     nodes = ns::neuron_node_selector(n);
@@ -159,15 +158,16 @@ void compute_features(std::string ifile)
     // Select branches
     for(auto it = nodes.begin(); it != nodes.end(); ++it){
       if(!first){
-        std::cout << " , ";
+        outbuffer << " , ";
       }
       first = false;
 
-      print_node_measures(*it, std::cout);
+      print_node_measures(*it, outbuffer);
     }
   }
 
-  std::cout << "]" << std::endl;
+  outbuffer << "]" << std::endl;
+  return outbuffer.str();
 
 }
 

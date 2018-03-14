@@ -5,7 +5,7 @@
 #'
 #' @export
 compute_features <- function(ifile) {
-    invisible(.Call('_neurostrcpp_compute_features', PACKAGE = 'neurostrcpp', ifile))
+    .Call('_neurostrcpp_compute_features', PACKAGE = 'neurostrcpp', ifile)
 }
 
 random_branch <- function() {

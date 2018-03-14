@@ -7,13 +7,14 @@
 using namespace Rcpp;
 
 // compute_features
-void compute_features(std::string ifile);
+std::string compute_features(std::string ifile);
 RcppExport SEXP _neurostrcpp_compute_features(SEXP ifileSEXP) {
 BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
-    compute_features(ifile);
-    return R_NilValue;
+    rcpp_result_gen = Rcpp::wrap(compute_features(ifile));
+    return rcpp_result_gen;
 END_RCPP
 }
 // random_branch
