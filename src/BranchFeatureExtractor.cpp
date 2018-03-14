@@ -243,9 +243,11 @@ std::string compute_branch_features(std::string ifile)
   // Read
   auto r = neurostr::io::read_file_by_ext(ifile);
 
+  std::stringstream outbuffer;
+
   // Measure each neurite and output report
   bool first = true;
-  std::cout << "[" << std::endl;
+  outbuffer << "[" << std::endl;
 
   // For each neuron
   for(auto n_it = r->begin(); n_it != r->end(); ++n_it){
@@ -258,15 +260,15 @@ std::string compute_branch_features(std::string ifile)
     // Select branches
     for(auto it = branches.begin(); it != branches.end(); ++it){
       if(!first){
-        std::cout << " , ";
+        outbuffer << " , ";
       }
       first = false;
 
-      branch_features::print_branch_measures(*it, std::cout);
+      branch_features::print_branch_measures(*it, outbuffer);
     }
   }
 
-  std::cout << "]" << std::endl;
-
+  outbuffer << "]" << std::endl; 
+  return outbuffer.str(); 
 }
 
