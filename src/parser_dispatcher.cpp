@@ -41,8 +41,8 @@ namespace io{
     // Extract extension
     //std::string extension = fspath.extension().string<std::string>().erase(0,1);
     //std::string name      = fspath.stem().string<std::string>(); 
-    std::string extension = "";
-    std::string name      = "";
+    std::string extension = "swc";
+    std::string name      = "C030502A";
 
     std::ifstream in;
     open_filestream(path,extension,in);

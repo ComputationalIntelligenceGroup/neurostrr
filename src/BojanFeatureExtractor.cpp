@@ -138,33 +138,33 @@ int main()
 {
 
   Rcpp::Rcout << "hello" << std::endl;
-  // std::string ifile = "~/code/bbp-data/data/BBP_SWC/C030502A.swc";
-  // // Read
-  // auto r = neurostr::io::read_file_by_ext(ifile);
-  //
-  // // Measure each neurite and output report
-  // bool first = true;
-  // std::cout << "[" << std::endl;
-  //
-  // // For each neuron
-  // for(auto n_it = r->begin(); n_it != r->end(); ++n_it){
-  //   neurostr::Neuron& n = *n_it;
-  //
-  //   std::vector<ns::const_node_reference> nodes;
-  //   nodes = ns::neuron_node_selector(n);
-  //
-  //   // Select branches
-  //   for(auto it = nodes.begin(); it != nodes.end(); ++it){
-  //     if(!first){
-  //       std::cout << " , ";
-  //     }
-  //     first = false;
-  //
-  //     print_node_measures(*it, std::cout);
-  //   }
-  // }
-  //
-  // std::cout << "]" << std::endl;
+  std::string ifile = "~/code/bbp-data/data/BBP_SWC/C030502A.swc";
+  // Read
+  auto r = neurostr::io::read_file_by_ext(ifile);
+
+  // Measure each neurite and output report
+  bool first = true;
+  std::cout << "[" << std::endl;
+
+  // For each neuron
+  for(auto n_it = r->begin(); n_it != r->end(); ++n_it){
+    neurostr::Neuron& n = *n_it;
+
+    std::vector<ns::const_node_reference> nodes;
+    nodes = ns::neuron_node_selector(n);
+
+    // Select branches
+    for(auto it = nodes.begin(); it != nodes.end(); ++it){
+      if(!first){
+        std::cout << " , ";
+      }
+      first = false;
+
+      print_node_measures(*it, std::cout);
+    }
+  }
+
+  std::cout << "]" << std::endl;
 
 }
 
