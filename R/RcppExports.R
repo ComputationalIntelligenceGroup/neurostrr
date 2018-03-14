@@ -5,6 +5,13 @@ random_branch <- function() {
     .Call('_neurostrcpp_random_branch', PACKAGE = 'neurostrcpp')
 }
 
+#' Compute branch features
+#'
+#' @export
+compute_branch_features <- function(ifile) {
+    .Call('_neurostrcpp_compute_branch_features', PACKAGE = 'neurostrcpp', ifile)
+}
+
 random_barycenter <- function() {
     .Call('_neurostrcpp_random_barycenter', PACKAGE = 'neurostrcpp')
 }
