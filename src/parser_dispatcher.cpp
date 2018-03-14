@@ -42,7 +42,7 @@ namespace io{
     //std::string extension = fspath.extension().string<std::string>().erase(0,1);
     //std::string name      = fspath.stem().string<std::string>(); 
     std::string extension = "swc";
-    std::string name      = "C030502A";
+    std::string name      = "C030502A.swc";
 
     std::ifstream in;
     open_filestream(path,extension,in);

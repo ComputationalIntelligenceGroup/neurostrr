@@ -134,11 +134,11 @@ void print_node_measures(const neurostr::Node& b, std::ostream& os){
 }
 
 // [[Rcpp::export]]
-int main()
+void compute_features(std::string ifile)
 {
 
   Rcpp::Rcout << "hello" << std::endl;
-  std::string ifile = "~/code/bbp-data/data/BBP_SWC/C030502A.swc";
+  // ifile = "/home/bmihaljevic/code/bbp-data/data/BBP_SWC/C030502A.swc";
   // Read
   auto r = neurostr::io::read_file_by_ext(ifile);
 
@@ -149,6 +149,7 @@ int main()
   // For each neuron
   for(auto n_it = r->begin(); n_it != r->end(); ++n_it){
     neurostr::Neuron& n = *n_it;
+    std::cout << "a neuron" << std::endl;
 
     std::vector<ns::const_node_reference> nodes;
     nodes = ns::neuron_node_selector(n);
