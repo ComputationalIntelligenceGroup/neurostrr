@@ -6,6 +6,16 @@
 
 using namespace Rcpp;
 
+// main
+int main();
+RcppExport SEXP _neurostrcpp_main() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(main());
+    return rcpp_result_gen;
+END_RCPP
+}
 // random_branch
 double random_branch();
 RcppExport SEXP _neurostrcpp_random_branch() {
@@ -49,6 +59,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_neurostrcpp_main", (DL_FUNC) &_neurostrcpp_main, 0},
     {"_neurostrcpp_random_branch", (DL_FUNC) &_neurostrcpp_random_branch, 0},
     {"_neurostrcpp_random_barycenter", (DL_FUNC) &_neurostrcpp_random_barycenter, 0},
     {"_neurostrcpp_random_node", (DL_FUNC) &_neurostrcpp_random_node, 0},
