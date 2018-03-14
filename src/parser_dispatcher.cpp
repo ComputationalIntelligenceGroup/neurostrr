@@ -37,12 +37,13 @@ namespace io{
   
   std::unique_ptr<Reconstruction> read_file_by_ext(const std::string& path){
     // Create path
-    boost::filesystem::path fspath(path);
-  
+    //boost::filesystem::path fspath(path); 
     // Extract extension
-    std::string extension = fspath.extension().string<std::string>().erase(0,1);
-    std::string name      = fspath.stem().string<std::string>();
-    
+    //std::string extension = fspath.extension().string<std::string>().erase(0,1);
+    //std::string name      = fspath.stem().string<std::string>(); 
+    std::string extension = "";
+    std::string name      = "";
+
     std::ifstream in;
     open_filestream(path,extension,in);
     

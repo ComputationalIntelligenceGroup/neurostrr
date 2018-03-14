@@ -6,8 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-#define BOOST_FILESYSTEM_NO_DEPRECATED 
-#include <boost/filesystem.hpp>
 
 #include "neuron.h"
 
