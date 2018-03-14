@@ -133,12 +133,14 @@ void print_node_measures(const neurostr::Node& b, std::ostream& os){
   os << "}";
 }
 
+//' Compute node features
+//'
+//' @export
 // [[Rcpp::export]]
 void compute_features(std::string ifile)
 {
 
-  Rcpp::Rcout << "hello" << std::endl;
-  // ifile = "/home/bmihaljevic/code/bbp-data/data/BBP_SWC/C030502A.swc";
+  std::stringstream buffer;
   // Read
   auto r = neurostr::io::read_file_by_ext(ifile);
 
@@ -168,4 +170,6 @@ void compute_features(std::string ifile)
   std::cout << "]" << std::endl;
 
 }
+
+
 
