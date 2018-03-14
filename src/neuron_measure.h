@@ -4,17 +4,17 @@
 #include <Eigen/Dense>
 #include <Eigen/SVD>
 
-#include <neurostr/core/node.h>
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/neurite_type.h>
-#include <neurostr/core/neuron.h>
+#include "node.h"
+#include "neurite.h"
+#include "neurite_type.h"
+#include "neuron.h"
 
-#include <neurostr/measure/measure_operations.h>
-#include <neurostr/measure/node_measure.h>
+#include "measure_operations.h"
+#include "node_measure.h"
 
-#include <neurostr/selector/selector.h>
-#include <neurostr/selector/node_selector.h>
-#include <neurostr/selector/neurite_selector.h>
+#include "selector.h"
+#include "node_selector.h"
+#include "neurite_selector.h"
 
 namespace neurostr {
   

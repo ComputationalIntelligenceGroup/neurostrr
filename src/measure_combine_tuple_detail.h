@@ -4,9 +4,9 @@
 #include <iterator>
 #include <vector>
 
-#include <neurostr/core/traits.h>
-#include <neurostr/selector/selector.h>
-#include <neurostr/measure/measure_traits.h>
+#include "traits.h"
+#include "selector.h"
+#include "measure_traits.h"
 
 namespace neurostr {
 namespace measure {

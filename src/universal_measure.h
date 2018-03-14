@@ -3,13 +3,13 @@
 
 #include <functional>
 
-#include <neurostr/measure/measure.h>
-#include <neurostr/core/node.h>
-#include <neurostr/core/branch.h>
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/neuron.h>
+#include "measure.h"
+#include "node.h"
+#include "branch.h"
+#include "neurite.h"
+#include "neuron.h"
 
-#include <neurostr/selector/selector_traits.h>
+#include "selector_traits.h"
 
 
 namespace neurostr {

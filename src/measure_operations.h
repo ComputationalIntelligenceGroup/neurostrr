@@ -1,13 +1,13 @@
 #ifndef NEUROSTR_MEASURES_MEASURE_OPS_H_
 #define NEUROSTR_MEASURES_MEASURE_OPS_H_
 
-#include <neurostr/measure/measure_traits.h>
-#include <neurostr/measure/aggregator_traits.h>
+#include "measure_traits.h"
+#include "aggregator_traits.h"
 
-#include <neurostr/measure/detail/compose_selector_measure_detail.h>
-#include <neurostr/measure/detail/measure_combine_tuple_detail.h>
+#include "compose_selector_measure_detail.h"
+#include "measure_combine_tuple_detail.h"
 
-//#include <neurostr/selector/selector_traits.h>
+//#include "selector_traits.h"
 
 namespace neurostr {
 namespace measure {

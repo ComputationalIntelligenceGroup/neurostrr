@@ -1,12 +1,12 @@
 #ifndef NEUROSTR_MEASURE_LMEASURE_H_
 #define NEUROSTR_MEASURE_LMEASURE_H_
 
-#include <neurostr/measure/universal_measure.h>
-#include <neurostr/measure/branch_measure.h>
-#include <neurostr/measure/neurite_measure.h>
-#include <neurostr/measure/neuron_measure.h>
+#include "universal_measure.h"
+#include "branch_measure.h"
+#include "neurite_measure.h"
+#include "neuron_measure.h"
 
-#include <neurostr/measure/aggregate.h>
+#include "aggregate.h"
 
 namespace neurostr{
 namespace measure{

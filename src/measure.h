@@ -5,18 +5,18 @@
 #include <iterator>
 #include <tuple>
 
-#include <neurostr/core/traits.h>
-#include <neurostr/core/node.h>
-#include <neurostr/core/branch.h>
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/neuron.h>
+#include "traits.h"
+#include "node.h"
+#include "branch.h"
+#include "neurite.h"
+#include "neuron.h"
 
-#include <neurostr/selector/selector.h>
+#include "selector.h"
 
-#include <neurostr/measure/measure_traits.h>
-#include <neurostr/measure/aggregator_traits.h>
-#include <neurostr/measure/aggregate.h>
-#include <neurostr/measure/measure_operations.h>
+#include "measure_traits.h"
+#include "aggregator_traits.h"
+#include "aggregate.h"
+#include "measure_operations.h"
 
 
 #endif

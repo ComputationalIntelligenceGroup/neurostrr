@@ -4,13 +4,13 @@
 #include <Eigen/Dense>
 #include <Eigen/SVD>
 
-#include <neurostr/core/node.h>
+#include "node.h"
 
-#include <neurostr/measure/measure_operations.h>
+#include "measure_operations.h"
 
-#include <neurostr/selector/selector.h>
-#include <neurostr/selector/node_selector.h>
-#include <neurostr/selector/neuron_selector.h>
+#include "selector.h"
+#include "node_selector.h"
+#include "neuron_selector.h"
 
 namespace neurostr {
 namespace measure {

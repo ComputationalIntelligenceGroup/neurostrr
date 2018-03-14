@@ -1,7 +1,7 @@
 #ifndef NEUROSTR_MEASURES_MEASURE_TRAITS_H_
 #define NEUROSTR_MEASURES_MEASURE_TRAITS_H_
 
-#include <neurostr/core/traits.h>
+#include "traits.h"
 
 namespace neurostr {
 namespace measure {
