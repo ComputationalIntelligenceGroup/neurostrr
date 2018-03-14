@@ -4,7 +4,7 @@
  * @author Luis Rodriguez
  *
  */
-#include <neurostr/io/nl_structure.h>
+#include "nl_structure.h"
 
 namespace neurostr {
 namespace io {

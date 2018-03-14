@@ -1,4 +1,4 @@
-#include <neurostr/core/neurite_type.h>
+#include "neurite_type.h"
 
 namespace neurostr{
   

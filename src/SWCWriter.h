@@ -5,14 +5,14 @@
 #include <string>
 #include <boost/format.hpp>
 
-#include <neurostr/core/property.h>
-#include <neurostr/core/node.h>
-#include <neurostr/core/branch.h>
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/neurite_type.h>
-#include <neurostr/core/neuron.h>
+#include "property.h"
+#include "node.h"
+#include "branch.h"
+#include "neurite.h"
+#include "neurite_type.h"
+#include "neuron.h"
 
-#include <neurostr/selector/node_selector.h>
+#include "node_selector.h"
 
 namespace neurostr {
 namespace io {

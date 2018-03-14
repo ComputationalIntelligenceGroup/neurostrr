@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include <neurostr/core/property.h>
-#include <neurostr/core/geometry.h>
+#include "property.h"
+#include "geometry.h"
 
 namespace neurostr {
   

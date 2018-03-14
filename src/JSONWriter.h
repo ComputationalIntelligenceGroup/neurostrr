@@ -19,8 +19,8 @@
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/stringbuffer.h>
 
-#include <neurostr/core/contour.h>
-#include <neurostr/core/neuron.h>
+#include "contour.h"
+#include "neuron.h"
 
 
 

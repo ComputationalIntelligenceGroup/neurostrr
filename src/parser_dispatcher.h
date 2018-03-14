@@ -9,13 +9,13 @@
 #define BOOST_FILESYSTEM_NO_DEPRECATED 
 #include <boost/filesystem.hpp>
 
-#include <neurostr/core/neuron.h>
+#include "neuron.h"
 
-#include <neurostr/io/parser.h>
-#include <neurostr/io/ASCParser.h>
-#include <neurostr/io/DATParser.h>
-#include <neurostr/io/SWCParser.h>
-#include <neurostr/io/JSONParser.h>
+#include "parser.h"
+#include "ASCParser.h"
+#include "DATParser.h"
+#include "SWCParser.h"
+#include "JSONParser.h"
 
 namespace neurostr {
 namespace io{

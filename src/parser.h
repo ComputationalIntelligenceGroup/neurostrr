@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include <neurostr/core/log.h>
-#include <neurostr/core/neuron.h>
+#include "log.h"
+#include "neuron.h"
 
 namespace neurostr {
   

@@ -5,7 +5,7 @@
 #include <string>
 #include <boost/any.hpp>
 #include <cstdio>
-#include <neurostr/core/geometry.h>
+#include "geometry.h"
 
 namespace neurostr{
  

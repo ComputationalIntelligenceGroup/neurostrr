@@ -5,12 +5,12 @@
 #include <string>
 #include <boost/tokenizer.hpp>
 
-#include <neurostr/io/parser.h>
-#include <neurostr/core/property.h>
-#include <neurostr/core/node.h>
-#include <neurostr/core/branch.h>
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/neuron.h>
+#include "parser.h"
+#include "property.h"
+#include "node.h"
+#include "branch.h"
+#include "neurite.h"
+#include "neuron.h"
 
 
 namespace neurostr {

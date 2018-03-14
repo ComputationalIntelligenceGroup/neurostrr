@@ -1,4 +1,4 @@
-#include <neurostr/core/node.h>
+#include "node.h"
 #include <boost/format.hpp>
 
 namespace neurostr{

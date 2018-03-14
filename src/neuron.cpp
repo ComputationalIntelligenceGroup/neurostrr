@@ -1,4 +1,4 @@
-#include <neurostr/core/neuron.h>
+#include "neuron.h"
 
 #include <limits>
 #include <boost/any.hpp>

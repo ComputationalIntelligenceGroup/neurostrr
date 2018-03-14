@@ -1,6 +1,6 @@
 #include <cctype>
 
-#include <neurostr/core/contour.h>
+#include "contour.h"
 
 namespace neurostr {
   

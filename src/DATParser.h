@@ -14,15 +14,15 @@
 #include <vector>
 #include <cstdint>
 
-#include <neurostr/io/parser.h>
-#include <neurostr/io/nl_structure.h>
+#include "parser.h"
+#include "nl_structure.h"
 
-#include <neurostr/core/log.h>
-#include <neurostr/core/property.h>
-#include <neurostr/core/node.h>
-#include <neurostr/core/branch.h>
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/neuron.h>
+#include "log.h"
+#include "property.h"
+#include "node.h"
+#include "branch.h"
+#include "neurite.h"
+#include "neuron.h"
 
 #include <basen.hpp>
 

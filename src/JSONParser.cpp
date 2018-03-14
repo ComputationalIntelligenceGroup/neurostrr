@@ -1,4 +1,4 @@
-#include <neurostr/io/JSONParser.h>
+#include "JSONParser.h"
 
 namespace neurostr {
 namespace io {

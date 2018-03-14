@@ -13,11 +13,11 @@
 
 #include <Eigen/Geometry>
 
-#include <neurostr/core/property.h>
-#include <neurostr/core/definitions.h>
-#include <neurostr/core/geometry.h>
-#include <neurostr/core/node.h>
-#include <neurostr/core/log.h>
+#include "property.h"
+#include "definitions.h"
+#include "geometry.h"
+#include "node.h"
+#include "log.h"
 
 
 /**

@@ -11,9 +11,9 @@
 
 #include <Eigen/Geometry>
 
-#include <neurostr/core/definitions.h>
-#include <neurostr/core/property.h>
-#include <neurostr/core/geometry.h>
+#include "definitions.h"
+#include "property.h"
+#include "geometry.h"
 
 namespace neurostr {
 

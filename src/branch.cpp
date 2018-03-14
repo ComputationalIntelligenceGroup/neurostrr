@@ -1,4 +1,4 @@
-#include <neurostr/core/branch.h>
+#include "branch.h"
 #include <iostream>
 #include <ios>
 

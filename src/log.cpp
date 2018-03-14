@@ -1,4 +1,4 @@
-#include <neurostr/core/log.h>
+#include "log.h"
 
 namespace neurostr{
 namespace log{

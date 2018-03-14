@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include <neurostr/io/SWCParser.h>
+#include "SWCParser.h"
 #include <algorithm>
 #include <string>
 

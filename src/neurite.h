@@ -13,12 +13,12 @@
 #include <boost/any.hpp>
 #include <boost/geometry.hpp>
 
-#include <neurostr/core/definitions.h>
-#include <neurostr/core/property.h>
+#include "definitions.h"
+#include "property.h"
 #include <tree.hh>
-#include <neurostr/core/branch.h>
-#include <neurostr/core/neurite_type.h>
-#include <neurostr/core/log.h>
+#include "branch.h"
+#include "neurite_type.h"
+#include "log.h"
 
 namespace neurostr {
 

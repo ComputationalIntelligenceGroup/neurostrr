@@ -12,8 +12,8 @@
 #include <vector>
 #include <iostream>
 
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/neurite_type.h>
+#include "neurite.h"
+#include "neurite_type.h"
 
 
 namespace neurostr {

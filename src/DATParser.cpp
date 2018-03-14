@@ -8,7 +8,7 @@
  *
  */
 
-#include <neurostr/io/DATParser.h>
+#include "DATParser.h"
 
 #include <stdexcept>
 #include <cstring>

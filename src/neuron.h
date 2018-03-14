@@ -8,11 +8,11 @@
 #include <boost/iterator/filter_iterator.hpp>
 #include <boost/iterator/indirect_iterator.hpp>
 
-#include <neurostr/core/property.h>
-#include <neurostr/core/contour.h>
-#include <neurostr/core/neurite_type.h>
-#include <neurostr/core/neurite.h>
-#include <neurostr/core/log.h>
+#include "property.h"
+#include "contour.h"
+#include "neurite_type.h"
+#include "neurite.h"
+#include "log.h"
 
 namespace neurostr {
   

@@ -1,4 +1,4 @@
-#include <neurostr/core/geometry.h>
+#include "geometry.h"
 
 namespace neurostr {
 namespace geometry {
