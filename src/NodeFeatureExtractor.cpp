@@ -1,9 +1,11 @@
+#include <stdio.h>
 
 #include <stdio.h>
 
 #include <string>
 #include <iostream>
 #include <algorithm>
+
 #include <boost/format.hpp>
 
 #include "log.h"
@@ -20,8 +22,6 @@
 
 #include "parser_dispatcher.h"
 #include "lmeasure_decl.h"
-
-#include <Rcpp.h>
 
 namespace ns = neurostr::selector;
 namespace nm = neurostr::measure;
@@ -133,12 +133,16 @@ void print_node_measures(const neurostr::Node& b, std::ostream& os){
   os << "}";
 }
 
+
 //' Compute node features
 //'
 //' @export
 // [[Rcpp::export]]
-std::string compute_features(std::string ifile)
+std::string compute_node_features(std::string ifile)
 {
+  // Log errors in std::cerr
+  neurostr::log::init_log_cerr();
+  neurostr::log::enable_log();
 
   std::stringstream outbuffer;
   // Read
@@ -168,8 +172,5 @@ std::string compute_features(std::string ifile)
 
   outbuffer << "]" << std::endl;
   return outbuffer.str();
-
 }
-
-
 
