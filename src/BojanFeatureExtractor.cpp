@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <Rcpp.h>
 
 #include <stdio.h>
 
@@ -22,6 +20,8 @@
 
 #include "parser_dispatcher.h"
 #include "lmeasure_decl.h"
+
+#include <Rcpp.h>
 
 namespace ns = neurostr::selector;
 namespace nm = neurostr::measure;
