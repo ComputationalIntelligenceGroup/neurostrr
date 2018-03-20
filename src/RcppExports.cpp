@@ -37,6 +37,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// convert
+void convert(std::string ifile, std::string ofile, bool correct);
+RcppExport SEXP _neurostrcpp_convert(SEXP ifileSEXP, SEXP ofileSEXP, SEXP correctSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
+    Rcpp::traits::input_parameter< std::string >::type ofile(ofileSEXP);
+    Rcpp::traits::input_parameter< bool >::type correct(correctSEXP);
+    convert(ifile, ofile, correct);
+    return R_NilValue;
+END_RCPP
+}
 // random_node
 double random_node();
 RcppExport SEXP _neurostrcpp_random_node() {
@@ -74,6 +86,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_neurostrcpp_random_branch", (DL_FUNC) &_neurostrcpp_random_branch, 0},
     {"_neurostrcpp_compute_branch_features", (DL_FUNC) &_neurostrcpp_compute_branch_features, 1},
     {"_neurostrcpp_random_barycenter", (DL_FUNC) &_neurostrcpp_random_barycenter, 0},
+    {"_neurostrcpp_convert", (DL_FUNC) &_neurostrcpp_convert, 3},
     {"_neurostrcpp_random_node", (DL_FUNC) &_neurostrcpp_random_node, 0},
     {"_neurostrcpp_compute_node_features", (DL_FUNC) &_neurostrcpp_compute_node_features, 1},
     {"_neurostrcpp_timesTwo", (DL_FUNC) &_neurostrcpp_timesTwo, 1},

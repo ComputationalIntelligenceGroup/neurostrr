@@ -16,6 +16,13 @@ random_barycenter <- function() {
     .Call('_neurostrcpp_random_barycenter', PACKAGE = 'neurostrcpp')
 }
 
+#' Converts a reconstruction to SWC or JSON.
+#'
+#' @export
+convert <- function(ifile, ofile, correct = FALSE) {
+    invisible(.Call('_neurostrcpp_convert', PACKAGE = 'neurostrcpp', ifile, ofile, correct))
+}
+
 random_node <- function() {
     .Call('_neurostrcpp_random_node', PACKAGE = 'neurostrcpp')
 }
