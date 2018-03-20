@@ -20,13 +20,14 @@ void output_validation(const neurostr::Neuron& n,
                        const V& validation,
                        std::ostream& os,
                        const bool exhaustive,
+                       std::stringstream& outbuffer,
                        bool& first){
 
     V test = validation;
     test.validate(n);
 
     if(!first)
-      std::cout << "," << std::endl;
+      outbuffer << "," << std::endl;
 
     test.toJSON(os,!exhaustive);
 
@@ -38,7 +39,7 @@ void output_validation(const neurostr::Neuron& n,
 //'
 //' @export
 // [[Rcpp::export]]
- void validate(std::string ifile)
+std::string validate(std::string ifile)
 {
 
   neurostr::log::init_log_cerr();
@@ -96,15 +97,18 @@ void output_validation(const neurostr::Neuron& n,
   if(omitdend) n.erase_dendrites();
 
 
+  std::stringstream outbuffer;
+
   // Run validations and output report
-  std::cout << "[" << std::endl;
+  outbuffer << "[" << std::endl;
 
   // Execute attached
   if(attached && !omitsoma){
     output_validation(n,
                       nv::neurites_attached_to_soma,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
@@ -112,8 +116,9 @@ void output_validation(const neurostr::Neuron& n,
   if(soma && !omitsoma){
     output_validation(n,
                       nv::neuron_has_soma,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
@@ -121,56 +126,63 @@ void output_validation(const neurostr::Neuron& n,
   if(planar && !bidim){
     output_validation(n,
                       nv::planar_reconstruction_validator_factory(planar_rec_threshold),
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(dendcount && !omitdend){
     output_validation(n,
                       nv::dendrite_count_validator_factory(dcount_min,dcount_max),
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(apcount && !omitapical){
     output_validation(n,
                       nv::apical_count_validator_factory(!nostrict),
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(axoncount && !omitaxon){
     output_validation(n,
                       nv::axon_count_validator_factory(!nostrict),
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(trif){
     output_validation(n,
                       nv::no_trifurcations_validator,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(linear){
     output_validation(n,
                       nv::linear_branches_validator_factory(linear_branch_threshold),
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(zerolen){
     output_validation(n,
                       nv::zero_length_segments_validator,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
@@ -178,8 +190,9 @@ void output_validation(const neurostr::Neuron& n,
   if(intersec && !nodiams){
     output_validation(n,
                       nv::radius_length_segments_validator,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
@@ -187,24 +200,27 @@ void output_validation(const neurostr::Neuron& n,
   if(nodecr  && !nodiams ){
     output_validation(n,
                       nv::increasing_radius_validator,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(branchcoll){
     output_validation(n,
                       nv::branch_collision_validator_factory(nodiams),
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
   if(segcoll){
     output_validation(n,
                       nv::segment_collision_validator,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
@@ -212,11 +228,12 @@ void output_validation(const neurostr::Neuron& n,
   if(angles){
     output_validation(n,
                       nv::extreme_angles_validator,
-                      std::cout,
+                      outbuffer,
                       exhaustive,
+                      outbuffer,
                       first);
   }
 
-  std::cout << "]" << std::endl;
-
+  outbuffer << "]" << std::endl;
+  return outbuffer.str();
 }

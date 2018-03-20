@@ -14,3 +14,12 @@ test_that("Compute branch features nominal", {
   branch <- json2dataframe(json_branch)
   expect_true('partition_asymmetry' %in% colnames(branch))
 })
+
+test_that("Validator nominal", {
+  file <- '/home/bmihaljevic/code/bbp-data/data/BBP_SWC/C030502A.swc'
+  validate <- neurostrcpp::validate(file)
+  expect_true(nchar(validate) > 0)
+
+  validate <- json2dataframe(validate)
+  df <- jsonlite::fromJSON(validate)
+})

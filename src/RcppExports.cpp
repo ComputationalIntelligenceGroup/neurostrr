@@ -71,13 +71,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // validate
-void validate(std::string ifile);
+std::string validate(std::string ifile);
 RcppExport SEXP _neurostrcpp_validate(SEXP ifileSEXP) {
 BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
-    validate(ifile);
-    return R_NilValue;
+    rcpp_result_gen = Rcpp::wrap(validate(ifile));
+    return rcpp_result_gen;
 END_RCPP
 }
 

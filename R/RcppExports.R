@@ -38,6 +38,6 @@ compute_node_features <- function(ifile) {
 #'
 #' @export
 validate <- function(ifile) {
-    invisible(.Call('_neurostrcpp_validate', PACKAGE = 'neurostrcpp', ifile))
+    .Call('_neurostrcpp_validate', PACKAGE = 'neurostrcpp', ifile)
 }
 
