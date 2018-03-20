@@ -34,7 +34,3 @@ compute_node_features <- function(ifile) {
     .Call('_neurostrcpp_compute_node_features', PACKAGE = 'neurostrcpp', ifile)
 }
 
-timesTwo <- function(x) {
-    .Call('_neurostrcpp_timesTwo', PACKAGE = 'neurostrcpp', x)
-}
-
