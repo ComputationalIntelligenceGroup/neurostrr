@@ -5,6 +5,7 @@
 
 #include <boost/format.hpp>
 
+#include "filesystem.h"
 #include "log.h"
 #include "parser_dispatcher.h"
 #include "SWCWriter.h"
@@ -21,7 +22,7 @@ void convert(std::string ifile,  std::string ofile, bool correct = false)
   neurostr::log::enable_log();
 
   // Output Format
-  std::string ext;
+  std::string ext = neurostr::io::get_extension(ofile);
 
   // Apply RDP simplification
   float eps = 0.0;
