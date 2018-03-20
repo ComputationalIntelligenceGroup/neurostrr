@@ -2,5 +2,6 @@
 
 export(compute_branch_features)
 export(compute_node_features)
+export(json2dataframe)
 importFrom(Rcpp,sourceCpp)
 useDynLib(neurostrcpp)
