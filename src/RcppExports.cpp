@@ -70,6 +70,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// validate
+void validate(std::string ifile);
+RcppExport SEXP _neurostrcpp_validate(SEXP ifileSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
+    validate(ifile);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_neurostrcpp_random_branch", (DL_FUNC) &_neurostrcpp_random_branch, 0},
@@ -78,6 +88,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_neurostrcpp_convert", (DL_FUNC) &_neurostrcpp_convert, 3},
     {"_neurostrcpp_random_node", (DL_FUNC) &_neurostrcpp_random_node, 0},
     {"_neurostrcpp_compute_node_features", (DL_FUNC) &_neurostrcpp_compute_node_features, 1},
+    {"_neurostrcpp_validate", (DL_FUNC) &_neurostrcpp_validate, 1},
     {NULL, NULL, 0}
 };
 

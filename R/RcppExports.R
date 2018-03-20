@@ -34,3 +34,10 @@ compute_node_features <- function(ifile) {
     .Call('_neurostrcpp_compute_node_features', PACKAGE = 'neurostrcpp', ifile)
 }
 
+#' Compute branch features
+#'
+#' @export
+validate <- function(ifile) {
+    invisible(.Call('_neurostrcpp_validate', PACKAGE = 'neurostrcpp', ifile))
+}
+
