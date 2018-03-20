@@ -5,6 +5,7 @@
 #include <memory>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 
 #include "neuron.h"
