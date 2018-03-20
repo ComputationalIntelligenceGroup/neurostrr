@@ -1,3 +1,2 @@
-PKG_CPPFLAGS =	-I../inst/include/
-CFLAGS +=              -O3 -Wall -pipe -pedantic -std=gnu99
-CXXFLAGS +=            -O3 -Wall -pipe -Wno-unused -pedantic
+PKG_CFLAGS += -I../inst/include/
+PKG_CXXFLAGS += -I../inst/include/
