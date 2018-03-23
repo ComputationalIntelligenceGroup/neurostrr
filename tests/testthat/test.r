@@ -21,5 +21,5 @@ test_that("Validator nominal", {
   expect_true(nchar(validate) > 0)
 
   validate <- json2dataframe(validate)
-  df <- jsonlite::fromJSON(validate)
+  expect_equal(ncol(validate), 4)
 })
