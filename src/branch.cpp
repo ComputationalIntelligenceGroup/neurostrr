@@ -679,17 +679,3 @@ std::ostream& operator<<(std::ostream& os, const Branch& b){
 
       
 } // Namespace neurostr
-
-
-// [[Rcpp::export]]
-double random_branch() {
-  neurostr::Branch b;
-  // seems to throw seg fault 
-  //return b.length();
-  return 0.0;
-}
-
-
-/*** R
-random_branch()
-***/

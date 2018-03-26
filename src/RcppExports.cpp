@@ -6,16 +6,6 @@
 
 using namespace Rcpp;
 
-// random_branch
-double random_branch();
-RcppExport SEXP _neurostrcpp_random_branch() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(random_branch());
-    return rcpp_result_gen;
-END_RCPP
-}
 // compute_branch_features
 std::string compute_branch_features(std::string ifile);
 RcppExport SEXP _neurostrcpp_compute_branch_features(SEXP ifileSEXP) {
@@ -24,16 +14,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
     rcpp_result_gen = Rcpp::wrap(compute_branch_features(ifile));
-    return rcpp_result_gen;
-END_RCPP
-}
-// random_barycenter
-double random_barycenter();
-RcppExport SEXP _neurostrcpp_random_barycenter() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(random_barycenter());
     return rcpp_result_gen;
 END_RCPP
 }
@@ -47,16 +27,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type correct(correctSEXP);
     convert(ifile, ofile, correct);
     return R_NilValue;
-END_RCPP
-}
-// random_node
-double random_node();
-RcppExport SEXP _neurostrcpp_random_node() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(random_node());
-    return rcpp_result_gen;
 END_RCPP
 }
 // compute_node_features
@@ -83,11 +53,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_neurostrcpp_random_branch", (DL_FUNC) &_neurostrcpp_random_branch, 0},
     {"_neurostrcpp_compute_branch_features", (DL_FUNC) &_neurostrcpp_compute_branch_features, 1},
-    {"_neurostrcpp_random_barycenter", (DL_FUNC) &_neurostrcpp_random_barycenter, 0},
     {"_neurostrcpp_convert", (DL_FUNC) &_neurostrcpp_convert, 3},
-    {"_neurostrcpp_random_node", (DL_FUNC) &_neurostrcpp_random_node, 0},
     {"_neurostrcpp_compute_node_features", (DL_FUNC) &_neurostrcpp_compute_node_features, 1},
     {"_neurostrcpp_validate", (DL_FUNC) &_neurostrcpp_validate, 1},
     {NULL, NULL, 0}

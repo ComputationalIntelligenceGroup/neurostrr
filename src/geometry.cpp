@@ -2,22 +2,22 @@
 
 namespace neurostr {
 namespace geometry {
-
+  
   template <>
   planar_point planar_projection<0>(const point_type& p){
     return planar_point(bg::get<1>(p),bg::get<2>(p));
   }
-
+  
   template <>
   planar_point planar_projection<1>(const point_type& p){
     return planar_point(bg::get<0>(p),bg::get<2>(p));
   }
-
+  
   template <>
   planar_point planar_projection<2>(const point_type& p){
     return planar_point(bg::get<0>(p),bg::get<1>(p));
   }
-
+  
   planar_point planar_projection(const point_type& p, int i){
     switch(i){
       case 0: return planar_projection<0>(p);
@@ -26,56 +26,56 @@ namespace geometry {
       default: return planar_point(NAN,NAN);
     }
   }
-
-  float distance(const point_type& a, const point_type& b){
+  
+  float distance(const point_type& a, const point_type& b){ 
     return bg::distance(a,b);
   }
-
+  
   point_type vectorFromTo(const point_type& from, const point_type& to){
     point_type ret = to;
     bg::subtract_point(ret,from);
     return ret;
   }
-
-  void traslate(point_type& p, const point_type& v ){
-    bg::add_point(p,v);
+  
+  void traslate(point_type& p, const point_type& v ){ 
+    bg::add_point(p,v); 
   }
-
+  
   void scale(point_type& p, float r, const point_type&  ref){
-    auto tmp = p ;
+    auto tmp = p ; 
     bg::subtract_point(tmp, ref); // tmp is our "vector to scale"
     scale(tmp,r);
     bg::add_point(tmp, ref);
     p = tmp;
   }
-
+  
   void scale(point_type& p, float rx, float ry, float rz){
     bg::multiply_point(p, point_type(rx,ry,rz));
   }
-
+  
   void scale(point_type& p, float r){
-
+    
     if(r == 1) return;
-
+    
     float factor = r * norm(p);
     normalize(p);
     bg::multiply_value(p, factor);
   }
-
+  
   point_type cross_product(const point_type& p, const point_type& q) {
     point_type r;
     bg::set<0>(r, bg::get<1>(p) * bg::get<2>(q) - bg::get<2>(p) * bg::get<1>(q));
     bg::set<1>(r, bg::get<2>(p) * bg::get<0>(q) - bg::get<0>(p) * bg::get<2>(q));
     bg::set<2>(r, bg::get<0>(p) * bg::get<1>(q) - bg::get<1>(p) * bg::get<0>(q));
-
+    
     return r;
   }
-
+  
   float norm(const point_type& p) {
     return bg::distance(p, point_type(0,0,0));
   }
 
-  std::array<point_type, 3> get_basis(const point_type& vx,
+  std::array<point_type, 3> get_basis(const point_type& vx, 
                                       const point_type& up){
 
   std::array<point_type, 3> basis;
@@ -101,7 +101,7 @@ namespace geometry {
   return basis;
 }
 
-float segment_segment_distance(const point_type& p0, const point_type& p1,
+float segment_segment_distance(const point_type& p0, const point_type& p1, 
                                const point_type& q0, const point_type& q1) {
 
   namespace bg = boost::geometry;
@@ -188,22 +188,22 @@ float segment_segment_distance(const point_type& p0, const point_type& p1,
 
 // Computes the quaternion to transform v into u
 Eigen::Quaternionf align_vectors(const point_type& from, const point_type& to, const point_type up){
-
+  
   namespace bg = boost::geometry;
-
+    
     if(norm(from) == 0 || norm(to) == 0)
       return  Eigen::Quaternionf::Identity();
-
+    
     float angle = geometry::vector_vector_directed_angle(from,to,up);
-
+    
     // Already aligned
     if( angle == 0 ) return  Eigen::Quaternionf::Identity();
-
+    
     // Rotation axis (normalized)
     auto axis = geometry::cross_product(from, to);
-
-
-
+    
+    
+    
     if(geometry::norm(axis) == 0){
         // 180 rotation
         angle = M_PI;
@@ -214,23 +214,23 @@ Eigen::Quaternionf align_vectors(const point_type& from, const point_type& to, c
       if(boost::geometry::dot_product(up,axis) < 0)
         angle *= -1;;
     }
-
+    
     // Compute angle axis rotation and rotate.
-    Eigen::AngleAxisf rotation( angle,
+    Eigen::AngleAxisf rotation( angle, 
                                 Eigen::Vector3f(bg::get<0>(axis),
                                                 bg::get<1>(axis),
                                                 bg::get<2>(axis))
                               );
     Eigen::Quaternionf q(rotation);
     q.normalize(); // just in case. its supposed to be normalized already
-
+  
   return q;
 }
 
-bool segment_box_intersection( const bg::model::box<point_type>& b,
-                               const bg::model::segment<point_type>& s,
+bool segment_box_intersection( const bg::model::box<point_type>& b, 
+                               const bg::model::segment<point_type>& s, 
                               point_type& inter){
-
+   
   // Croses min corner by x
   if(segment_cross_plane<0>(s,b.min_corner(),inter)){
     return true;
@@ -251,7 +251,7 @@ bool segment_box_intersection( const bg::model::box<point_type>& b,
 
 bool box_box_intersection(const box_type&a ,const box_type&b) {
   std::vector<point_type> corners = box_corners(b);
-
+  
   for(auto it = corners.begin(); it != corners.end() ; ++it) {
     if(bg::covered_by(*it,a))
       return true;
@@ -261,12 +261,12 @@ bool box_box_intersection(const box_type&a ,const box_type&b) {
 
 float lineseg_dist(const std::vector<point_type>& u,
                      const std::vector<point_type>& v){
-
+  
   float mindist =  std::numeric_limits<float>::max();
   float d;
-
+  
   if(u.size() < 2 || v.size() < 2 ) return mindist;
-
+                       
   for(auto uit = std::next(u.begin(),1); uit != u.end(); ++uit){
     for(auto vit = std::next(v.begin(),1); vit != v.end(); ++vit){
       d= segment_segment_distance(*std::prev(uit,1),*uit,
@@ -278,16 +278,16 @@ float lineseg_dist(const std::vector<point_type>& u,
 }
 
 std::vector<point_type> box_corners(const box_type &b){
-
+  
   point_type max_corner = b.max_corner();
   point_type min_corner = b.min_corner();
-
+  
   std::vector<point_type> v;
   v.reserve(8);
-
-  v.push_back(max_corner); // 1 1 1
+  
+  v.push_back(max_corner); // 1 1 1 
   v.push_back(min_corner); // 0 0 0
-  bg::set<0>(min_corner, bg::get<0>(max_corner));
+  bg::set<0>(min_corner, bg::get<0>(max_corner)); 
   v.push_back(min_corner); // 1 0 0
   bg::set<1>(min_corner, bg::get<1>(max_corner));
   v.push_back(min_corner); // 1 1 0
@@ -304,24 +304,24 @@ std::vector<point_type> box_corners(const box_type &b){
 }
 
 box_type bounding_box(const std::vector<point_type>& v){
-
+  
   if(v.size() == 0){
       return box_type(point_type(0,0,0),point_type(0,0,0));
   }
-
+  
   point_type min_corner( std::numeric_limits<float>::max(),
-                           std::numeric_limits<float>::max(),
+                           std::numeric_limits<float>::max(), 
                            std::numeric_limits<float>::max());
-
+    
   point_type max_corner( std::numeric_limits<float>::min(),
-                           std::numeric_limits<float>::min(),
+                           std::numeric_limits<float>::min(), 
                            std::numeric_limits<float>::min());
-
+                           
   for( auto n_it = v.begin(); n_it != v.end(); ++n_it ) {
     geometry::max_by_component(*n_it,max_corner);
     geometry::min_by_component(*n_it,min_corner);
   }
-
+  
   return box_type(min_corner,max_corner);
 }
 
@@ -396,33 +396,33 @@ void normalize(point_type& p){
 
 float vector_vector_angle(const point_type&a ,const point_type &b){
   if(equal(a,b)) return 0.;
-
+  
   if(norm(a) == 0 || norm(b) == 0 ) return 0;
-
+  
   point_type norm_v0 = a;
   point_type norm_v1 = b;
   normalize(norm_v0);
   normalize(norm_v1);
-
+  
   float angle = std::atan2(geometry::norm(geometry::cross_product(norm_v0, norm_v1)), boost::geometry::dot_product(norm_v0, norm_v1));
   if(std::isnan(angle)) return 0;
   else return angle;
 }
 
 float vector_vector_directed_angle(const point_type&v0 ,const point_type &v1, const point_type up){
-
+  
   point_type norm_v0 = v0;
   point_type norm_v1 = v1;
   normalize(norm_v0);
   normalize(norm_v1);
-
+  
   // They are in the same direction
   if(equal(norm_v0,norm_v1))
     return 0.0;
-
-  // This is more precise than acos
+  
+  // This is more precise than acos 
   float angle = std::atan2(geometry::norm(geometry::cross_product(norm_v0, norm_v1)), boost::geometry::dot_product(norm_v0, norm_v1));
-
+  
   // Check sign
   if( boost::geometry::dot_product(up,geometry::cross_product(norm_v0, norm_v1)) < 0){
     return -angle;
@@ -446,21 +446,21 @@ std::pair<float,float> local_orientation(const point_type& p, const std::array<p
       elevation=std::acos(z/r);
     } else{
       azimuth=0;
-      elevation=0;
+      elevation=0;       
     }
 
-    return std::pair<float, float>(azimuth, elevation);
+    return std::pair<float, float>(azimuth, elevation);        
 }
 
 polygon_type as_planar_polygon( const std::vector<point_type>& v){
-
+  
     if(v.size() < 2) return polygon_type();
-
+    
     // Create nx3 matrix
     Eigen::Matrix<float, Eigen::Dynamic, 3> m;
     auto n = v.size();
     m.resize(n, 3);
-
+    
 
     decltype(n) i = 0;
     for (auto it = v.begin(); it != v.end(); ++it, ++i) {
@@ -476,20 +476,20 @@ polygon_type as_planar_polygon( const std::vector<point_type>& v){
 
     // Eigen allocates matrices in column-major
     auto data = aux.data();
-
+    
     // Create polygon
     polygon_type p;
-
+    
     for (decltype(n) i = 0; i < n; ++i) {
         bg::append(p.outer(), planar_point(data[i], data[n + i]));
     }
     // Close
     bg::append(p.outer(), planar_point(data[0], data[n]));
     bg::correct(p);
-
+    
     return p;
   }
-
+  
 float polygon_area(const polygon_type& p){
     return bg::area(p);
   }
@@ -497,12 +497,12 @@ float polygon_area(const polygon_type& p){
 void negate(point_type &p){
     bg::multiply_value(p,-1);
   }
-
+  
 point_type barycenter(const std::vector<point_type>& v){
     point_type res(0,0,0);
-
+    
     if(v.size()>0){
-      for (auto it = v.begin(); it != v.end(); ++it){
+      for (auto it = v.begin(); it != v.end(); ++it){ 
         bg::add_point(res,*it);
       }
       bg::divide_value(res,v.size());
@@ -514,28 +514,28 @@ point_type barycenter(const std::vector<point_type>& v){
 bool point_in_segment(const point_type & p,const segment_type& s){
   point_type v = s.second;
   point_type w = p;
-
+  
   bg::subtract_point(v,s.first);
   bg::subtract_point(w,s.first);
-
+  
   // Same direction and shorter distance
-  return (bg::dot_product(v,w) == (norm(v)*norm(w))) &&
+  return (bg::dot_product(v,w) == (norm(v)*norm(w))) && 
          norm(v) >= norm(w);
 }
 
 bool in_triangle_border(const triangle_type& t, const point_type& p){
   segment_type aux;
-
+  
   // Check every segment
-
+  
   // BG::within is 2D ignores the third component!
-
+  
   return (point_in_segment(p, segment_type(t[0],t[1])) ||
           point_in_segment(p, segment_type(t[0],t[2])) ||
           point_in_segment(p, segment_type(t[1],t[2])) ||
           equal(p,t[0]) || equal(p,t[1]) || equal(p,t[2]));
 }
-
+  
 bool is_triangle_vertex(const triangle_type& t, const point_type& p){
   for(auto it = t.begin(); it != t.end(); ++it ){
     if(equal(p,*it)) return true;
@@ -548,33 +548,33 @@ bool within_triangle(const triangle_type& t, const point_type& p){
   point_type u = t[1]; // u will be the vector t0-t1
   point_type v = t[2]; // v will be the vector t0-t2
   point_type w = p; // w is t0 - P
-
+  
   bg::subtract_point(u,t[0]);
   //normalize(u);
   bg::subtract_point(v,t[0]);
   //normalize(v);
   bg::subtract_point(w,t[0]);
-
+  
   // n is a normal vector
   point_type n = cross_product(u,v);
   float n_sqnorm = bg::dot_product(n,n);
-
+  
   // If the dot product bw n and w is not 0 -> not in the same plane
   if(bg::dot_product(n,w) != 0) return false;
   else {
     // We are in the same plane - check that we are in the triangle
-    // For that we will use barycentric coordinates
-    // Check http://math.stackexchange.com/questions/544946/determine-if-projection-of-3d-point-onto-plane-is-within-a-triangle
+    // For that we will use barycentric coordinates 
+    // Check http://math.stackexchange.com/questions/544946/determine-if-projection-of-3d-point-onto-plane-is-within-a-triangle 
     // for a detailed explanation
     float gamma = bg::dot_product( cross_product(u,w),n) / n_sqnorm;
     float beta = bg::dot_product( cross_product(w,v),n) / n_sqnorm;
     float alpha = 1 - gamma - beta;
-
+    
     return (gamma >= 0 && gamma <= 1) &&
            (beta >= 0 && beta <= 1) &&
            (alpha >= 0 && alpha <= 1);
   }
-
+  
 }
 
 /**
@@ -591,7 +591,7 @@ bool within_triangle(const triangle_type& t, const point_type& p){
                                   point_type& intersection ){
   point_type e1 = t[1]; // Vector t0-t1
   point_type e2 = t[2]; // vector t0-t2
-
+  
   bg::subtract_point(e1,t[0]);
   bg::subtract_point(e2,t[0]);
 
@@ -603,33 +603,33 @@ bool within_triangle(const triangle_type& t, const point_type& p){
     return false;
   } else {
     float inv_det = 1.0/det;
-
+    
     // Vector from V0 to Ray origin
     point_type vec_t = ray_o;
     bg::subtract_point(vec_t,t[0]);
-
+    
     // U param
     float u = bg::dot_product(vec_t,p) * inv_det;
-
+    
     // Intersection outside triangle
     if(u < 0. || u> 1.) return false;
-
+    
     // V parameter
     point_type q = cross_product(vec_t,e1);
     float v = bg::dot_product(ray_v,q) * inv_det;
-
+    
     // Intersection outside triangle
     if( v < 0. || (u+v) > 1.) return false;
-
+    
     float g = bg::dot_product(e2,q) * inv_det;
     if(g > 1E-6){
-      // g is the distance
+      // g is the distance 
       intersection = ray_v;
       bg::multiply_value(intersection,g);
       bg::add_point(intersection,ray_o);
-      return true;
+      return true;      
     }
-
+    
     // No hit
     return false;
   }
@@ -640,23 +640,23 @@ float triangle_area( const triangle_type& t){
   point_type v0 = t[1];
   point_type v1 = t[2];
   point_type v2 = t[1];
-
+  
   bg::subtract_point(v0, t[0]);
   bg::subtract_point(v1, t[0]);
   bg::subtract_point(v2, t[2]);
-
+  
   // Norms
   float a = norm(v0);
   float b = norm(v1);
   float c = norm(v2);
-
-  // Perimeter half
+  
+  // Perimeter half 
   float s = (a+b+c) / 2.0;
   // Area (Heron's formula)
   return std::sqrt( s * (s-a) * (s-b) * (s-c));
 }
 
-float tetrahedron_volume( const point_type& p0,
+float tetrahedron_volume( const point_type& p0, 
                           const point_type& p1,
                           const point_type& p2,
                           const point_type& p3){
@@ -664,11 +664,11 @@ float tetrahedron_volume( const point_type& p0,
   point_type v0 = p0;
   point_type v1 = p1;
   point_type v2 = p2;
-
+  
   bg::subtract_point(v0,p3);
   bg::subtract_point(v1,p3);
   bg::subtract_point(v2,p3);
-
+  
   return std::abs(bg::dot_product(cross_product(v0,v1),v2)/3.0);
 }
 
@@ -683,7 +683,7 @@ TriangleMesh::TriangleMesh()
 TriangleMesh::TriangleMesh(const face_storage& faces)
     : vertices_()
     , faces_(){
-
+      
       // Add faces
       for(auto it = faces.begin(); it!= faces.end() ; ++it){
         add( (*it)[0],(*it)[1],(*it)[2] );
@@ -697,7 +697,7 @@ TriangleMesh::vertex_iterator TriangleMesh::add(const point_type& p){
   for(pos = begin_vertex(); pos != end_vertex(); ++pos){
     if(distance(*pos,p)<1E-3) return pos;
   }
-
+  
   vertices_.push_back(p);
   return std::prev(vertices_.end(),1);
 }
@@ -755,7 +755,7 @@ TriangleMesh::index_face_iterator TriangleMesh::add(const point_type& v0, const 
   index_type v0_p = std::distance(vertices_.begin(),add(v0));
   index_type v1_p = std::distance(vertices_.begin(),add(v1));
   index_type v2_p = std::distance(vertices_.begin(),add(v2));
-
+  
   // This is a reminder: Adding a element to a vector MAY invalidate other iterators since
   // IT could BE REALLOCATED!!!!
   index_face_type t = {v0_p,v1_p,v2_p};
@@ -764,11 +764,11 @@ TriangleMesh::index_face_iterator TriangleMesh::add(const point_type& v0, const 
 }
 
 TriangleMesh::index_face_iterator TriangleMesh::add(const index_type& v0, const index_type& v1, const index_type& v2){
-
+  
   if(v0 >= vertices_.size() || v1 >= vertices_.size() || v2 >= vertices_.size()){
     return faces_.end();
   }
-
+  
   index_face_type t = {v0,v1,v2};
   faces_.push_back(t);
   return std::prev(faces_.end(),1);
@@ -819,24 +819,24 @@ std::size_t TriangleMesh::face_count() const{
  * @return  True if the point is within the mesh
  */
 bool TriangleMesh::point_inside(const point_type& p, const point_type& ray_direction) const{
-
+  
   /** Steps:
   *
-  *  1. ray with source p and direction 1,0,0
+  *  1. ray with source p and direction 1,0,0 
   *  2. Check intersections with all mesh faces
   *  3. Odd number of intersections - Its inside
-  *
-  *  Special cases:
+  *  
+  *  Special cases: 
   *   If the intersection is at the border or at a vertex
-  *   of a triangle, only count it once.
+  *   of a triangle, only count it once. 
   *  Easy way to go: Count distinct intersection points instead.
   */
-
+  
   // Intersection points
   std::vector<point_type> intersections;
   point_type i_point;
   bool new_point;
-
+  
   for (auto it = begin_face(); it != end_face(); ++it) {
       if(triangle_ray_intersection(get_triangle(*it),
                                      p,
@@ -844,14 +844,14 @@ bool TriangleMesh::point_inside(const point_type& p, const point_type& ray_direc
                                      i_point)){
         // Hit!
         new_point = true;
-
+        
         // Its a new intersection point?
-        for(auto ip_it = intersections.begin();
+        for(auto ip_it = intersections.begin(); 
             new_point && ip_it != intersections.end(); ++ip_it){
           if( distance(i_point,*ip_it) < 1E-6 )
             new_point = false;
         }
-
+        
         // Add new point
         if (new_point) {
           intersections.push_back(i_point);
@@ -862,7 +862,7 @@ bool TriangleMesh::point_inside(const point_type& p, const point_type& ray_direc
   return ( (intersections.size() % 2) == 1);
 }
 
-point_type TriangleMesh::ray_intersection(const point_type& p,
+point_type TriangleMesh::ray_intersection(const point_type& p, 
                                           const point_type& ray_direction) const {
   point_type i_point;
   for (auto it = begin_face(); it != end_face(); ++it) {
@@ -877,13 +877,13 @@ point_type TriangleMesh::ray_intersection(const point_type& p,
 }
 
 triangle_type TriangleMesh::get_triangle(const TriangleMesh::index_face_type& f) const {
-
+  
   // Check length
   for(auto it = f.begin(); it != f.end() ; ++it){
     if(*it >= vertices_.size()) return triangle_type();
   }
-
-  triangle_type t = {   vertices_[f[0]],
+  
+  triangle_type t = {   vertices_[f[0]], 
                         vertices_[f[1]],
                         vertices_[f[2]] };
   return t;
@@ -906,11 +906,11 @@ bool TriangleMesh::vertex_of_face(const TriangleMesh::index_type& v, const Trian
 std::ostream& TriangleMesh::toJSON(std::ostream& os){
    os << "{" << std::endl;
    if(vertex_count() > 0){
-
+    
     os << "\t\"vertices\" : [ " << std::endl ;
     // Print first
-    os << "\t\t { \"x\" : " << getx(*begin_vertex()) <<
-                  ", \"y\" :" << gety(*begin_vertex()) <<
+    os << "\t\t { \"x\" : " << getx(*begin_vertex()) << 
+                  ", \"y\" :" << gety(*begin_vertex()) << 
                   ", \"z\" : " << getz(*begin_vertex()) << "}" << std::endl;
     // Print rest
     for(auto it = std::next(begin_vertex(),1); it != end_vertex(); ++it){
@@ -918,19 +918,19 @@ std::ostream& TriangleMesh::toJSON(std::ostream& os){
     }
     os << "\t]" << std::endl ;
   }
-
+  
   if(face_count() > 0 ){
-
+    
     os << "\t, \"faces\" : [" << std::endl ;
     auto face = *begin_face();
     os << "\t\t [" << face[0]  << ", " << face[1]<< ", " << face[2] << "]" << std::endl;
-
+   
     for(auto face = std::next(begin_face(),1); face != end_face(); ++face){
       os << "\t\t, [" << (*face)[0] << ", " << (*face)[1] << ", " << (*face)[2] << "]" << std::endl;
     }
     os << "]";
   }
-
+  
   os << "}" << std::endl;
   return os;
 }
@@ -938,21 +938,3 @@ std::ostream& TriangleMesh::toJSON(std::ostream& os){
 
 }  // namespace geoutils
 }  // namespace neurostr
-
-using point_type = neurostr::point_type ;
-
-// [[Rcpp::export]]
-double random_barycenter() {
-   std::vector<point_type> a(2);
-   point_type p(0, 1, 9);
-   a.push_back(p);
-   // point_type p(0, 1, 9);
-   a.push_back(p);
-   point_type b = neurostr::geometry::barycenter(a);
-   return b.get<0>();
-}
-
-
-/*** R
-random_barycenter();
-***/
