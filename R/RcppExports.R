@@ -4,8 +4,8 @@
 #' Compute branch features
 #'
 #' @export
-compute_branch_features <- function(ifile) {
-    .Call('_neurostrcpp_compute_branch_features', PACKAGE = 'neurostrcpp', ifile)
+compute_branch_features <- function(ifile, omitapical, omitaxon, omitdend, correct, selection) {
+    .Call('_neurostrcpp_compute_branch_features', PACKAGE = 'neurostrcpp', ifile, omitapical, omitaxon, omitdend, correct, selection)
 }
 
 #' Converts a reconstruction to SWC or JSON.
@@ -13,13 +13,6 @@ compute_branch_features <- function(ifile) {
 #' @export
 convert <- function(ifile, ofile, correct = FALSE) {
     invisible(.Call('_neurostrcpp_convert', PACKAGE = 'neurostrcpp', ifile, ofile, correct))
-}
-
-#' Compute node features
-#'
-#' @export
-compute_node_features <- function(ifile) {
-    .Call('_neurostrcpp_compute_node_features', PACKAGE = 'neurostrcpp', ifile)
 }
 
 #' Compute branch features

@@ -7,5 +7,6 @@
 json2dataframe(json)
 }
 \description{
-Adds all the measures as dataframe columns.
+For feature extraction, adds all the measures as dataframe columns.
+For validation, it omits any detailed results.
 }

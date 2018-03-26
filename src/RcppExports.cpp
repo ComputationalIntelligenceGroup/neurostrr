@@ -7,13 +7,18 @@
 using namespace Rcpp;
 
 // compute_branch_features
-std::string compute_branch_features(std::string ifile);
-RcppExport SEXP _neurostrcpp_compute_branch_features(SEXP ifileSEXP) {
+std::string compute_branch_features(std::string ifile, bool omitapical, bool omitaxon, bool omitdend, bool correct, std::string selection);
+RcppExport SEXP _neurostrcpp_compute_branch_features(SEXP ifileSEXP, SEXP omitapicalSEXP, SEXP omitaxonSEXP, SEXP omitdendSEXP, SEXP correctSEXP, SEXP selectionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
-    rcpp_result_gen = Rcpp::wrap(compute_branch_features(ifile));
+    Rcpp::traits::input_parameter< bool >::type omitapical(omitapicalSEXP);
+    Rcpp::traits::input_parameter< bool >::type omitaxon(omitaxonSEXP);
+    Rcpp::traits::input_parameter< bool >::type omitdend(omitdendSEXP);
+    Rcpp::traits::input_parameter< bool >::type correct(correctSEXP);
+    Rcpp::traits::input_parameter< std::string >::type selection(selectionSEXP);
+    rcpp_result_gen = Rcpp::wrap(compute_branch_features(ifile, omitapical, omitaxon, omitdend, correct, selection));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -29,17 +34,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// compute_node_features
-std::string compute_node_features(std::string ifile);
-RcppExport SEXP _neurostrcpp_compute_node_features(SEXP ifileSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
-    rcpp_result_gen = Rcpp::wrap(compute_node_features(ifile));
-    return rcpp_result_gen;
-END_RCPP
-}
 // validate
 std::string validate(std::string ifile);
 RcppExport SEXP _neurostrcpp_validate(SEXP ifileSEXP) {
@@ -53,9 +47,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_neurostrcpp_compute_branch_features", (DL_FUNC) &_neurostrcpp_compute_branch_features, 1},
+    {"_neurostrcpp_compute_branch_features", (DL_FUNC) &_neurostrcpp_compute_branch_features, 6},
     {"_neurostrcpp_convert", (DL_FUNC) &_neurostrcpp_convert, 3},
-    {"_neurostrcpp_compute_node_features", (DL_FUNC) &_neurostrcpp_compute_node_features, 1},
     {"_neurostrcpp_validate", (DL_FUNC) &_neurostrcpp_validate, 1},
     {NULL, NULL, 0}
 };
