@@ -22,10 +22,6 @@ void convert(std::string ifile,  std::string ofile, bool correct = false)
   neurostr::log::init_log_cerr();
   neurostr::log::enable_log(); 
 
-  // Transform extension to lower
-  std::transform(ext.begin(),ext.end(),ext.begin(),::tolower);
-
-
   convert(ifile, ofile, ext, correct, eps); 
 
 }
