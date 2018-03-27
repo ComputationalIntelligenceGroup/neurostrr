@@ -16,12 +16,11 @@
 //'
 //' @export
 // [[Rcpp::export]]
-void convert(std::string ifile,  std::string ofile, bool correct = false)
-{
+void convert(std::string ifile,  std::string ofile, std::string ext, float eps = 0.0, bool correct = false)
+{ 
 
   neurostr::log::init_log_cerr();
   neurostr::log::enable_log(); 
 
   convert(ifile, ofile, ext, correct, eps); 
-
 }
