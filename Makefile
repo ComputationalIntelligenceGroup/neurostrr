@@ -18,5 +18,9 @@ adapt:
 update: import adapt
 
 clean: 
+	rm src/BranchFeatureExtractor.o src/NodeFeatureExtractor.o src/Validator.o src/NeuroConverter.o
+	rm src/*.so
+
+clean-all: 
 	rm src/*.o 
 	rm src/*.so

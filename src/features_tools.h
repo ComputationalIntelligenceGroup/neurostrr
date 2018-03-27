@@ -6,7 +6,7 @@ inline std::string escape_string(const std::string& s){
    return "\""+s+"\"";
  }
  
-inline  std::string escape_string(const char *c){
+inline std::string escape_string(const char *c){
    return escape_string(std::string(c));
  }
 
