@@ -2,9 +2,11 @@ context("general")
 
 test_that("Convert nominal", {
     file <- '/home/bmihaljevic/code/bbp-data/data/BBP_SWC/C030502A.swc'
-    file2 <- '/home/bmihaljevic/test-convert.json'
+    file2 <- '/tmp/neurostr-test-convert.json'
+    neurostrcpp::convert(file, file2, ext = "json")
+    expect_true(file.exists(file2))
     file.remove(file2)
-    neurostrcpp::convert(file, file2)
+    neurostrcpp::convert(file, file2, ext = "swc")
     expect_true(file.exists(file2))
 })
 

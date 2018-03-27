@@ -31,7 +31,7 @@ namespace nlm = neurostr::measure::lmeasure;
 //'
 //' @export
 // [[Rcpp::export]]
-std::string compute_branch_features(std::string ifile, bool omitapical, bool omitaxon, bool omitdend, bool correct, std::string selection) {
+std::string compute_branch_features(std::string ifile, bool omitapical = false, bool omitaxon = false, bool omitdend = false, bool correct = false, std::string selection = "all") {
   std::stringstream outbuffer;
   compute_branch_measures(ifile, omitapical, omitaxon, omitdend, correct, selection, outbuffer );
   return outbuffer.str();

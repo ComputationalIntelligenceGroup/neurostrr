@@ -36,10 +36,22 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// validate
+std::string validate(std::string ifile);
+RcppExport SEXP _neurostrcpp_validate(SEXP ifileSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
+    rcpp_result_gen = Rcpp::wrap(validate(ifile));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_neurostrcpp_compute_branch_features", (DL_FUNC) &_neurostrcpp_compute_branch_features, 6},
     {"_neurostrcpp_convert", (DL_FUNC) &_neurostrcpp_convert, 5},
+    {"_neurostrcpp_validate", (DL_FUNC) &_neurostrcpp_validate, 1},
     {NULL, NULL, 0}
 };
 

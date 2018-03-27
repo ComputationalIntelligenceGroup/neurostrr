@@ -4,7 +4,7 @@
 #' Compute branch features
 #'
 #' @export
-compute_branch_features <- function(ifile, omitapical, omitaxon, omitdend, correct, selection) {
+compute_branch_features <- function(ifile, omitapical = FALSE, omitaxon = FALSE, omitdend = FALSE, correct = FALSE, selection = "all") {
     .Call('_neurostrcpp_compute_branch_features', PACKAGE = 'neurostrcpp', ifile, omitapical, omitaxon, omitdend, correct, selection)
 }
 
@@ -13,5 +13,12 @@ compute_branch_features <- function(ifile, omitapical, omitaxon, omitdend, corre
 #' @export
 convert <- function(ifile, ofile, ext, eps = 0.0, correct = FALSE) {
     invisible(.Call('_neurostrcpp_convert', PACKAGE = 'neurostrcpp', ifile, ofile, ext, eps, correct))
+}
+
+#' Compute branch features
+#'
+#' @export
+validate <- function(ifile) {
+    .Call('_neurostrcpp_validate', PACKAGE = 'neurostrcpp', ifile)
 }
 
