@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: c(person("Rodriguez","Luis",email="luisrodluj@gmail.com",role=c("aut")), person("Mihaljevic","Bojan",email="bmihaljevic@fi.upm.es",role=c("aut","cre")) ) 
 Maintainer: Bojan Mihaljevic <bmihaljevic@fi.upm.es> 
 Description: NeuroSTR is a neuroanatomy toolbox for C++. It reads and processes three-dimensional neuron reconstructions  in the most common file formats and  offers a huge set of functions and utilities to work with them. 
-License: GPL2/3 
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp, RcppEigen, BH
