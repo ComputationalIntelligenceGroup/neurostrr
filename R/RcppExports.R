@@ -8,3 +8,10 @@ compute_branch_features <- function(ifile, omitapical, omitaxon, omitdend, corre
     .Call('_neurostrcpp_compute_branch_features', PACKAGE = 'neurostrcpp', ifile, omitapical, omitaxon, omitdend, correct, selection)
 }
 
+#' Converts a reconstruction to SWC or JSON.
+#'
+#' @export
+convert <- function(ifile, ofile, ext, eps = 0.0, correct = FALSE) {
+    invisible(.Call('_neurostrcpp_convert', PACKAGE = 'neurostrcpp', ifile, ofile, ext, eps, correct))
+}
+
