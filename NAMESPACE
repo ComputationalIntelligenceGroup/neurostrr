@@ -3,5 +3,6 @@
 export(compute_branch_features)
 export(convert)
 export(json2dataframe)
+export(validate)
 importFrom(Rcpp,sourceCpp)
 useDynLib(neurostrcpp)

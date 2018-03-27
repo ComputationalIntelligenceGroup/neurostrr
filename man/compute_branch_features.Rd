@@ -4,8 +4,8 @@
 \alias{compute_branch_features}
 \title{Compute branch features}
 \usage{
-compute_branch_features(ifile, omitapical, omitaxon, omitdend, correct,
-  selection)
+compute_branch_features(ifile, omitapical = FALSE, omitaxon = FALSE,
+  omitdend = FALSE, correct = FALSE, selection = "all")
 }
 \description{
 Compute branch features
