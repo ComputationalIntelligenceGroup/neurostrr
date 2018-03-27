@@ -1,0 +1,45 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## NeuroSTR 
+Is a library... It is documented at. 
+
+## R interface to NeuroSTR   
+Currently it provides a subset of functionalities. Say types are currently not exported
+
+These are documented in original package documentation.
+
+## Fature tools 
+At level of node, branch, and **neurites**. 
+
+The main thing is the output data frame. Yet, this data 
+
+Their output and input. What changes is that you can also get it directly as a data frame, althought the objects are then not exactly identical. the options of the tools are reduced.  
+
+The feature tools are  
+
+```{r}
+library(neurostr) 
+```
+
+
+## Pending 
+Many options are not available directly. However, it is easy to do 
+
+## Extending the output 
+Merging node and branch level? These are primitives and many useful can be built on top of it.  

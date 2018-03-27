@@ -1,4 +1,4 @@
 library(testthat)
-library(neurostrcpp)
+library(neurost)
 
-test_check("neurostrcpp")
+test_check("neurostr")
