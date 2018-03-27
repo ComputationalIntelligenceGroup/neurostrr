@@ -17,29 +17,38 @@ knitr::opts_chunk$set(
 ```
 
 ## NeuroSTR 
-Is a library... It is documented at. 
+NeuroSTR is a C++ neuroanatomy toolbox. It reads and processes three-dimensional neuron reconstructions in the most common file formats and offers a huge set of functions and utilities to work with them.  
+
+It is documented at <https://computationalintelligencegroup.github.io/neurostr/>. 
 
 ## R interface to NeuroSTR   
-Currently it provides a subset of functionalities. Say types are currently not exported
+The package currently provides a subset of functionalities, by providing wrappers to the following NeuroSTR [precompiled tools ](<https://computationalintelligencegroup.github.io/neurostr/doc/tools.html>):  
 
-These are documented in original package documentation.
+- Node Feature Extractor
+- Branch Feature Extractor
+- Format converter
+- Neuron Validator  
+
+**To do: docuemt node features**
+
 
 ## Fature tools 
-At level of node, branch, and **neurites**. 
-
-The main thing is the output data frame. Yet, this data 
-
-Their output and input. What changes is that you can also get it directly as a data frame, althought the objects are then not exactly identical. the options of the tools are reduced.  
-
-The feature tools are  
+The tool output json strings. So, to get branch level features, we run:   
 
 ```{r}
-library(neurostr) 
+library(neurostr)  
+file <- system.file("extdata", "C030397A-P2.swc", package = "neurostr") 
+branch <- compute_branch_features(ifile = file, omitdend = TRUE)
+head(branch)
 ```
 
+The arguments are identical as to the tools, although there are some less options. 
+At level of node, branch, and **neurites**.   The main thing is the output data frame. Yet, this data 
+Their output and input. What changes is that you can also get it directly as a data frame, althought the objects are then not exactly identical. the options of the tools are reduced.   The feature tools are   These are documented in original package documentation.  
 
 ## Pending 
 Many options are not available directly. However, it is easy to do 
+Say types are currently not exported
 
 ## Extending the output 
 Merging node and branch level? These are primitives and many useful can be built on top of it.  
