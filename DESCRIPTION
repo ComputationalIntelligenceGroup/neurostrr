@@ -1,4 +1,4 @@
-Package: neurostrcpp
+Package: neurostr
 Type: Package
 Title: R wrapper for the neuroSTR C++ library 
 Version: 0.1.0

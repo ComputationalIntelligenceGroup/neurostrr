@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // compute_branch_features
 std::string compute_branch_features(std::string ifile, bool omitapical, bool omitaxon, bool omitdend, bool correct, std::string selection);
-RcppExport SEXP _neurostrcpp_compute_branch_features(SEXP ifileSEXP, SEXP omitapicalSEXP, SEXP omitaxonSEXP, SEXP omitdendSEXP, SEXP correctSEXP, SEXP selectionSEXP) {
+RcppExport SEXP _neurostr_compute_branch_features(SEXP ifileSEXP, SEXP omitapicalSEXP, SEXP omitaxonSEXP, SEXP omitdendSEXP, SEXP correctSEXP, SEXP selectionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -24,7 +24,7 @@ END_RCPP
 }
 // convert
 void convert(std::string ifile, std::string ofile, std::string ext, float eps, bool correct);
-RcppExport SEXP _neurostrcpp_convert(SEXP ifileSEXP, SEXP ofileSEXP, SEXP extSEXP, SEXP epsSEXP, SEXP correctSEXP) {
+RcppExport SEXP _neurostr_convert(SEXP ifileSEXP, SEXP ofileSEXP, SEXP extSEXP, SEXP epsSEXP, SEXP correctSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
@@ -38,7 +38,7 @@ END_RCPP
 }
 // compute_node_features
 std::string compute_node_features(std::string ifile, bool omitapical, bool omitaxon, bool omitdend, bool correct);
-RcppExport SEXP _neurostrcpp_compute_node_features(SEXP ifileSEXP, SEXP omitapicalSEXP, SEXP omitaxonSEXP, SEXP omitdendSEXP, SEXP correctSEXP) {
+RcppExport SEXP _neurostr_compute_node_features(SEXP ifileSEXP, SEXP omitapicalSEXP, SEXP omitaxonSEXP, SEXP omitdendSEXP, SEXP correctSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -53,7 +53,7 @@ END_RCPP
 }
 // validate
 std::string validate(std::string ifile);
-RcppExport SEXP _neurostrcpp_validate(SEXP ifileSEXP) {
+RcppExport SEXP _neurostr_validate(SEXP ifileSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -64,14 +64,14 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_neurostrcpp_compute_branch_features", (DL_FUNC) &_neurostrcpp_compute_branch_features, 6},
-    {"_neurostrcpp_convert", (DL_FUNC) &_neurostrcpp_convert, 5},
-    {"_neurostrcpp_compute_node_features", (DL_FUNC) &_neurostrcpp_compute_node_features, 5},
-    {"_neurostrcpp_validate", (DL_FUNC) &_neurostrcpp_validate, 1},
+    {"_neurostr_compute_branch_features", (DL_FUNC) &_neurostr_compute_branch_features, 6},
+    {"_neurostr_convert", (DL_FUNC) &_neurostr_convert, 5},
+    {"_neurostr_compute_node_features", (DL_FUNC) &_neurostr_compute_node_features, 5},
+    {"_neurostr_validate", (DL_FUNC) &_neurostr_validate, 1},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_neurostrcpp(DllInfo *dll) {
+RcppExport void R_init_neurostr(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
