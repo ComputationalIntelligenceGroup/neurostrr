@@ -8,18 +8,18 @@ compute_branch_features <- function(ifile, omitapical = FALSE, omitaxon = FALSE,
     .Call('_neurostr_compute_branch_features', PACKAGE = 'neurostr', ifile, omitapical, omitaxon, omitdend, correct, selection)
 }
 
-#' Converts a reconstruction to SWC or JSON.
-#'
-#' @export
-convert <- function(ifile, ofile, ext, eps = 0.0, correct = FALSE) {
-    invisible(.Call('_neurostr_convert', PACKAGE = 'neurostr', ifile, ofile, ext, eps, correct))
-}
-
 #' Compute node features
 #'
 #' @export
 compute_node_features <- function(ifile, omitapical = FALSE, omitaxon = FALSE, omitdend = FALSE, correct = FALSE) {
     .Call('_neurostr_compute_node_features', PACKAGE = 'neurostr', ifile, omitapical, omitaxon, omitdend, correct)
+}
+
+#' Converts a reconstruction to SWC or JSON.
+#'
+#' @export
+convert <- function(ifile, ofile, ext, eps = 0.0, correct = FALSE) {
+    invisible(.Call('_neurostr_convert', PACKAGE = 'neurostr', ifile, ofile, ext, eps, correct))
 }
 
 #' Compute branch features

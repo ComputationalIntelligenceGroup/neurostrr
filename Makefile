@@ -13,7 +13,12 @@ adapt:
 	find -type f -name '*.h' -exec sed -i "s/#include <neurostr.*\/\(.*\)>/#include \"\1\"/g"  {} \;
 	find -type f -name '*.cpp' -exec sed -i "s/#include <neurostr.*\/\(.*\)>/#include \"\1\"/g"  {} \; 
 	# update parser dispatcher and add required files
+	rm src/BranchFeatureExtractor.cpp
+	rm src/NeuroConverter.cpp
+	rm src/NodeFeatureExtractor.cpp
+	rm src/Validator.cpp 
 	cp .diffs/* src/ 
+
 
 update: import adapt
 
