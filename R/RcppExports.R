@@ -15,6 +15,13 @@ convert <- function(ifile, ofile, ext, eps = 0.0, correct = FALSE) {
     invisible(.Call('_neurostrcpp_convert', PACKAGE = 'neurostrcpp', ifile, ofile, ext, eps, correct))
 }
 
+#' Compute node features
+#'
+#' @export
+compute_node_features <- function(ifile, omitapical = FALSE, omitaxon = FALSE, omitdend = FALSE, correct = FALSE) {
+    .Call('_neurostrcpp_compute_node_features', PACKAGE = 'neurostrcpp', ifile, omitapical, omitaxon, omitdend, correct)
+}
+
 #' Compute branch features
 #'
 #' @export
