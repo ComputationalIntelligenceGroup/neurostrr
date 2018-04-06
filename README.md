@@ -23,3 +23,4 @@ See <http://dirk.eddelbuettel.com/blog/2017/06/13/>.
 ### TODO
 - Make is_terminal logical  
 - document node features in NeuroSTR    
+- Limpiar Makevars y actualizar Makevars.win
