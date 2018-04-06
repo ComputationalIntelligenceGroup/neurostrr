@@ -13,7 +13,11 @@ devtools::install_github("ComputationalIntelligenceGroup/neurostrr")
 
 ## Example 
 
-See the vignette for more details. 
-
+See the vignette for more details. `vignette('neurostr', package = 'neurostr')`
 
 ## Known Issues 
+
+### TODO
+- Make is_terminal logical  
+- docuemt node features in NeuroSTR   
+- Not openniing vignette currently 

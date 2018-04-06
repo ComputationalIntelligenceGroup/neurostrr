@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "neurostr: an R wrapper for the NeuroSTR neuroanatomy toolbox"
+author: "Bojan Mihaljevic, Luis Rodriguez-Lujan"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -22,33 +22,60 @@ NeuroSTR is a C++ neuroanatomy toolbox. It reads and processes three-dimensional
 It is documented at <https://computationalintelligencegroup.github.io/neurostr/>. 
 
 ## R interface to NeuroSTR   
-The package currently provides a subset of functionalities, by providing wrappers to the following NeuroSTR [precompiled tools ](<https://computationalintelligencegroup.github.io/neurostr/doc/tools.html>):  
+The `neurostr` package currently provides a subset of functionalities, by providing wrappers to the following NeuroSTR [precompiled tools ](<https://computationalintelligencegroup.github.io/neurostr/doc/tools.html>) (the corresponding `neurostr` function in parenthesis):  
 
-- Node Feature Extractor
-- Branch Feature Extractor
-- Format converter
-- Neuron Validator  
-
-**To do: docuemt node features**
+- Node Feature Extractor (`compute_node_features()`) 
+- Branch Feature Extractor (`compute_branch_features`)
+- Format converter (`convert()`)
+- Neuron Validator  (`validate()`) 
 
 
-## Fature tools 
-The tool output json strings. So, to get branch level features, we run:   
+## Example 
+We will compute branch-level features. The tools output JSON string which we can convert to data frames for easy manipulation. Thus: 
 
 ```{r}
 library(neurostr)  
 file <- system.file("extdata", "C030397A-P2.swc", package = "neurostr") 
 branch <- compute_branch_features(ifile = file, omitdend = TRUE)
+branch <- json2dataframe(branch)
 head(branch)
 ```
 
-The arguments are identical as to the tools, although there are some less options. 
-At level of node, branch, and **neurites**.   The main thing is the output data frame. Yet, this data 
-Their output and input. What changes is that you can also get it directly as a data frame, althought the objects are then not exactly identical. the options of the tools are reduced.   The feature tools are   These are documented in original package documentation.  
+The arguments passed to the functions are a subset of those provided to the corresponding tool. See the documentation of the corresponding function and of the tool itself.  
 
-## Pending 
-Many options are not available directly. However, it is easy to do 
-Say types are currently not exported
+Similarly for node features:
+```{r}
+node <- compute_node_features(file)
+node <- json2dataframe(node)
+head(node)
+```
 
-## Extending the output 
-Merging node and branch level? These are primitives and many useful can be built on top of it.  
+## Working with the output 
+The data frame allows for easy summarizing the properties and filtering. While selector are not exported from NeuroSTR, it is easily filtered with straightforward R. 
+
+```{r}
+branch$is_pre_terminal <- as.logical(branch$is_pre_terminal)
+nrow(subset(branch, is_pre_terminal)) 
+```
+
+Also, a number of convenience functions are provided. Instead of using `subset`, we can select axonal branches with: 
+```{r}
+axon <- filter_neurite(branch, axon = TRUE)
+nrow(axon)
+```
+
+
+We can merge branch and node data, and, for example, easily summarize node metrics across branches. For example, we compute the mean node length of pre-terminal branches with: 
+
+```{r} 
+```  
+```{r, warning=FALSE, message=FALSE} 
+branch_node <- merge_branch_node(branch, node)
+pre_terminal <- subset(branch_node, is_pre_terminal)
+library(dplyr)
+pre_terminal <- dplyr::group_by(branch_node, branch)
+summarize(pre_terminal, mean(node_length))
+```
+
+## Future work  
+Functionalities such as arbor simplifications are currently not available. **However, it is easy to do ..**  Say types are currently not exported 
