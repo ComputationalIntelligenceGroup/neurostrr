@@ -31,7 +31,7 @@ The `neurostr` package currently provides a subset of functionalities, by provid
 
 
 ## Example 
-We will compute branch-level features. The tools output JSON string which we can convert to data frames for easy manipulation. Thus: 
+We will compute branch-level features. The tools output JSON string (documented in NeuroSTR documentation) which we can convert to data frames for easy manipulation. Thus: 
 
 ```{r}
 library(neurostr)  
