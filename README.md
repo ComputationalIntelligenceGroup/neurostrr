@@ -2,7 +2,7 @@
 The goal of `neurostr` is to to provide an R interface to the NeuroSTR C++ library.
 
 ## Installing  
-The package has only been tested on Ubuntu. It requires C++ 14.
+The package has only been tested on Ubuntu 16.04. It requires C++ 14.
 
 Install the package with:  
 ```r

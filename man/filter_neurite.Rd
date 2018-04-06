@@ -2,22 +2,10 @@
 % Please edit documentation in R/output.r
 \name{filter_neurite}
 \alias{filter_neurite}
-\title{#' Filter measures
-#' @export
-filter_measures <- function(branch) {
-  keep <-  setdiff(colnames(branch), c("neuron", "neurite", "neurite_type", "branch", "node"))
-  branch[ , keep, drop = FALSE ]
-}
-Filters either axon or dendritic measures.}
+\title{Filters either axon or dendritic measures.}
 \usage{
 filter_neurite(neuron, axon = TRUE)
 }
 \description{
-#' Filter measures
-#' @export
-filter_measures <- function(branch) {
-  keep <-  setdiff(colnames(branch), c("neuron", "neurite", "neurite_type", "branch", "node"))
-  branch[ , keep, drop = FALSE ]
-}
 Filters either axon or dendritic measures.
 }

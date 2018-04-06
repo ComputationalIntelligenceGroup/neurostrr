@@ -16,12 +16,15 @@ json2dataframe <- function(json) {
   a
 }
 
-#' #' Filter measures
-#' #' @export
-#' filter_measures <- function(branch) {
-#'   keep <-  setdiff(colnames(branch), c("neuron", "neurite", "neurite_type", "branch", "node"))
-#'   branch[ , keep, drop = FALSE ]
-#' }
+#' Filter measures
+#' @export
+filter_id <- function(branch, keep = FALSE) {
+  keep_columns <- c("neuron", "neurite", "neurite_type", "branch", "node")
+  if (!keep) {
+    keep_columns <-  setdiff(colnames(branch), keep_columns)
+  }
+  branch[ , keep_columns, drop = FALSE ]
+}
 
 #' Filters either axon or dendritic measures.
 #' @export
