@@ -16,10 +16,15 @@ compute_node_features <- function(ifile, omitapical = FALSE, omitaxon = FALSE, o
 }
 
 #' Converts a reconstruction to SWC or JSON.
+#' 
+#' Use resolved paths, i.e., not with ~ for the home directory.
 #'
+#' @example
+#' file <- system.file("extdata/", "C030502A.swc", package = "neurostr")
+#' convert(file, ext = "swc")
 #' @export
-convert <- function(ifile, ofile, ext, eps = 0.0, correct = FALSE) {
-    invisible(.Call('_neurostr_convert', PACKAGE = 'neurostr', ifile, ofile, ext, eps, correct))
+convert <- function(ifile, ext, eps = 0.0, correct = FALSE) {
+    .Call('_neurostr_convert', PACKAGE = 'neurostr', ifile, ext, eps, correct)
 }
 
 #' Compute branch features

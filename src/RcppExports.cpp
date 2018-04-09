@@ -38,17 +38,17 @@ BEGIN_RCPP
 END_RCPP
 }
 // convert
-void convert(std::string ifile, std::string ofile, std::string ext, float eps, bool correct);
-RcppExport SEXP _neurostr_convert(SEXP ifileSEXP, SEXP ofileSEXP, SEXP extSEXP, SEXP epsSEXP, SEXP correctSEXP) {
+std::string convert(std::string ifile, std::string ext, float eps, bool correct);
+RcppExport SEXP _neurostr_convert(SEXP ifileSEXP, SEXP extSEXP, SEXP epsSEXP, SEXP correctSEXP) {
 BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type ifile(ifileSEXP);
-    Rcpp::traits::input_parameter< std::string >::type ofile(ofileSEXP);
     Rcpp::traits::input_parameter< std::string >::type ext(extSEXP);
     Rcpp::traits::input_parameter< float >::type eps(epsSEXP);
     Rcpp::traits::input_parameter< bool >::type correct(correctSEXP);
-    convert(ifile, ofile, ext, eps, correct);
-    return R_NilValue;
+    rcpp_result_gen = Rcpp::wrap(convert(ifile, ext, eps, correct));
+    return rcpp_result_gen;
 END_RCPP
 }
 // validate
@@ -66,7 +66,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_neurostr_compute_branch_features", (DL_FUNC) &_neurostr_compute_branch_features, 6},
     {"_neurostr_compute_node_features", (DL_FUNC) &_neurostr_compute_node_features, 5},
-    {"_neurostr_convert", (DL_FUNC) &_neurostr_convert, 5},
+    {"_neurostr_convert", (DL_FUNC) &_neurostr_convert, 4},
     {"_neurostr_validate", (DL_FUNC) &_neurostr_validate, 1},
     {NULL, NULL, 0}
 };

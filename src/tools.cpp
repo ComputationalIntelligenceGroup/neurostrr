@@ -73,21 +73,25 @@ std::string compute_node_features(std::string ifile, bool omitapical = false, bo
 
 
 //' Converts a reconstruction to SWC or JSON.
-//'
+//' 
 //' Use resolved paths, i.e., not with ~ for the home directory.
 //'
 //' @example
 //' file <- system.file("extdata/", "C030502A.swc", package = "neurostr")
-//' convert(file, ofile = "/tmp/converted.swc", ext = "swc")
+//' convert(file, ext = "swc")
 //' @export
 // [[Rcpp::export]]
-void convert(std::string ifile,  std::string ofile, std::string ext, float eps = 0.0, bool correct = false)
+std::string convert(std::string ifile,  std::string ext, float eps = 0.0, bool correct = false)
 {
 
   neurostr::log::init_log_cerr();
   neurostr::log::enable_log();
 
-  convert(ifile, ofile, ext, correct, eps);
+
+  std::stringstream outbuffer;
+  convert(ifile, outbuffer, ext, correct, eps);
+
+  return outbuffer.str();
 }
 
 namespace nv = neurostr::validator;

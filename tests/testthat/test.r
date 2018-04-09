@@ -2,12 +2,10 @@ context("general")
 
 test_that("Convert nominal", {
     file <- system.file("extdata", "C030397A-P2.swc", package = "neurostr")
-    file2 <- '/tmp/neurostr-test-convert.json'
-    convert(file, file2, ext = "json")
-    expect_true(file.exists(file2))
-    file.remove(file2)
-    convert(file, file2, ext = "swc")
-    expect_true(file.exists(file2))
+    json <- convert(file, ext = "json")
+    # Currently not working because I have not adapted json2dataframe to handle the output of convert
+    branch <- json2dataframe(json)
+    swc <- convert(file, ext = "swc")
 })
 
 test_that("Compute branch features nominal", {
