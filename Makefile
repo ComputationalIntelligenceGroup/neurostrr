@@ -18,6 +18,7 @@ adapt:
 	rm src/NodeFeatureExtractor.cpp
 	rm src/Validator.cpp 
 	cp .diffs/* src/ 
+	git clean -f 
 
 
 update: import adapt
