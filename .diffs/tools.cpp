@@ -58,6 +58,11 @@ std::string compute_branch_features(std::string ifile, bool omitapical = false, 
 
 //' Compute node features
 //'
+//' Use resolved paths, i.e., not with ~ for the home directory.
+//'
+//' @example
+//' file <- system.file("extdata/", "C030502A.swc", package = "neurostr")
+//' convert(file, ext = "swc") 
 //' @export
 // [[Rcpp::export]]
 std::string compute_node_features(std::string ifile, bool omitapical = false, bool omitaxon = false, bool omitdend = false, bool correct = false)
@@ -76,13 +81,17 @@ std::string compute_node_features(std::string ifile, bool omitapical = false, bo
 //'
 //' @export
 // [[Rcpp::export]]
-void convert(std::string ifile,  std::string ofile, std::string ext, float eps = 0.0, bool correct = false)
+std::string convert(std::string ifile,  std::string ext, float eps = 0.0, bool correct = false)
 { 
 
   neurostr::log::init_log_cerr();
   neurostr::log::enable_log(); 
 
-  convert(ifile, ofile, ext, correct, eps); 
+  std::ofstream ofs(ofile);
+  convert(ifile, ofs, ext, correct, eps); 
+  ofs.close(); 
+
+  return ofs.str();
 }
 
 namespace nv = neurostr::validator;
