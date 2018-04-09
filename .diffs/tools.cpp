@@ -1,4 +1,4 @@
-#include <stdio.h> 
+#include <stdio.h>
 
 #include <string>
 #include <iostream>
@@ -21,7 +21,7 @@
 #include "lmeasure_decl.h"
 #include "branch_features.h"
 
-#include "node_features.h" 
+#include "node_features.h"
 
 #include <string>
 #include <iostream>
@@ -35,9 +35,9 @@
 #include "parser_dispatcher.h"
 #include "SWCWriter.h"
 #include "JSONWriter.h"
-#include "neuro_converter.h" 
+#include "neuro_converter.h"
 
-#include "predefined_validators.h" 
+#include "predefined_validators.h"
 #include "validator_tool.h"
 
 
@@ -53,45 +53,45 @@ std::string compute_branch_features(std::string ifile, bool omitapical = false, 
   std::stringstream outbuffer;
   compute_branch_measures(ifile, omitapical, omitaxon, omitdend, correct, selection, outbuffer );
   return outbuffer.str();
-} 
+}
 
 
 //' Compute node features
 //'
-//' Use resolved paths, i.e., not with ~ for the home directory.
-//'
-//' @example
-//' file <- system.file("extdata/", "C030502A.swc", package = "neurostr")
-//' convert(file, ext = "swc") 
 //' @export
 // [[Rcpp::export]]
 std::string compute_node_features(std::string ifile, bool omitapical = false, bool omitaxon = false, bool omitdend = false, bool correct = false)
 {
   // Log errors in std::cerr
   neurostr::log::init_log_cerr();
-  neurostr::log::enable_log(); 
+  neurostr::log::enable_log();
 
-  std::stringstream outbuffer; 
-  compute_node_features(outbuffer, ifile, omitapical, omitaxon, omitdend, correct); 
+  std::stringstream outbuffer;
+  compute_node_features(outbuffer, ifile, omitapical, omitaxon, omitdend, correct);
   return outbuffer.str();
 }
 
 
 //' Converts a reconstruction to SWC or JSON.
+//' 
+//' Use resolved paths, i.e., not with ~ for the home directory.
 //'
+//' @example
+//' file <- system.file("extdata/", "C030502A.swc", package = "neurostr")
+//' convert(file, ext = "swc")
 //' @export
 // [[Rcpp::export]]
 std::string convert(std::string ifile,  std::string ext, float eps = 0.0, bool correct = false)
-{ 
+{
 
   neurostr::log::init_log_cerr();
-  neurostr::log::enable_log(); 
+  neurostr::log::enable_log();
 
-  std::ofstream ofs(ofile);
-  convert(ifile, ofs, ext, correct, eps); 
-  ofs.close(); 
 
-  return ofs.str();
+  std::stringstream outbuffer;
+  convert(ifile, outbuffer, ext, correct, eps);
+
+  return outbuffer.str();
 }
 
 namespace nv = neurostr::validator;
@@ -165,7 +165,7 @@ std::string validate(std::string ifile)
   bool omitapical = false;
   bool omitaxon = false;
   bool omitdend = false;
-  bool omitsoma = false; 
+  bool omitsoma = false;
 
   std::stringstream outbuffer;
 
