@@ -1,4 +1,4 @@
-#include <stdio.h> 
+#include <stdio.h>
 
 #include <string>
 #include <iostream>
@@ -21,7 +21,7 @@
 #include "lmeasure_decl.h"
 #include "branch_features.h"
 
-#include "node_features.h" 
+#include "node_features.h"
 
 #include <string>
 #include <iostream>
@@ -35,9 +35,9 @@
 #include "parser_dispatcher.h"
 #include "SWCWriter.h"
 #include "JSONWriter.h"
-#include "neuro_converter.h" 
+#include "neuro_converter.h"
 
-#include "predefined_validators.h" 
+#include "predefined_validators.h"
 #include "validator_tool.h"
 
 
@@ -53,7 +53,7 @@ std::string compute_branch_features(std::string ifile, bool omitapical = false, 
   std::stringstream outbuffer;
   compute_branch_measures(ifile, omitapical, omitaxon, omitdend, correct, selection, outbuffer );
   return outbuffer.str();
-} 
+}
 
 
 //' Compute node features
@@ -64,25 +64,30 @@ std::string compute_node_features(std::string ifile, bool omitapical = false, bo
 {
   // Log errors in std::cerr
   neurostr::log::init_log_cerr();
-  neurostr::log::enable_log(); 
+  neurostr::log::enable_log();
 
-  std::stringstream outbuffer; 
-  compute_node_features(outbuffer, ifile, omitapical, omitaxon, omitdend, correct); 
+  std::stringstream outbuffer;
+  compute_node_features(outbuffer, ifile, omitapical, omitaxon, omitdend, correct);
   return outbuffer.str();
 }
 
 
 //' Converts a reconstruction to SWC or JSON.
 //'
+//' Use resolved paths, i.e., not with ~ for the home directory.
+//'
+//' @example
+//' file <- system.file("extdata/", "C030502A.swc", package = "neurostr")
+//' convert(file, ofile = "/tmp/converted.swc", ext = "swc")
 //' @export
 // [[Rcpp::export]]
 void convert(std::string ifile,  std::string ofile, std::string ext, float eps = 0.0, bool correct = false)
-{ 
+{
 
   neurostr::log::init_log_cerr();
-  neurostr::log::enable_log(); 
+  neurostr::log::enable_log();
 
-  convert(ifile, ofile, ext, correct, eps); 
+  convert(ifile, ofile, ext, correct, eps);
 }
 
 namespace nv = neurostr::validator;
@@ -156,7 +161,7 @@ std::string validate(std::string ifile)
   bool omitapical = false;
   bool omitaxon = false;
   bool omitdend = false;
-  bool omitsoma = false; 
+  bool omitsoma = false;
 
   std::stringstream outbuffer;
 
