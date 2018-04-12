@@ -52,8 +52,18 @@ filter_branches <- function(neuron) {
 #' introduces dependency on dplyr.
 #' @export
 merge_branch_node <- function(b, n) {
+  columns <- c("neuron", "neurite", "neurite_type", "branch", "node")
+  if (!is.data.frame(b) || !is.data.frame(n)) {
+    # if they are not data frame but not empty then there is an error in the code
+    stopifnot(length(b) == 0 || length(n) == 0)
+    # else, just return an empty data frame with following columns
+    df <- data.frame(t(rep(NA, length(columns))))
+    colnames(df) <- columns
+    df <- df[FALSE, ]
+    return(df)
+  }
   b$x <- NULL
   b$y <- NULL
   b$z <- NULL
-  b <- dplyr::left_join(n, b,  by = c("neuron", "neurite", "neurite_type", "branch", "node"))
+  dplyr::left_join(n, b,  by = columns)
 }

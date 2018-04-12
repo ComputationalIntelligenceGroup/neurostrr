@@ -77,5 +77,11 @@ pre_terminal <- dplyr::group_by(branch_node, branch)
 summarize(pre_terminal, mean(node_length))
 ```
 
+## Validate
+```{r} 
+valid <- neurostr::json2dataframe(neurostr::validate(file))
+```
+
+
 ## Future work  
 Functionalities such as arbor simplifications are currently not available. **However, it is easy to do ..**  Say types are currently not exported 
