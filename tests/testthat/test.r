@@ -30,3 +30,12 @@ test_that("Validator nominal", {
   validate <- json2dataframe(validate)
   expect_equal(ncol(validate), 4)
 })
+
+test_that("filter axon", {
+ file <- system.file("extdata", "C030397A-P2.swc", package = "neurostr")
+ json_branch <- compute_branch_features(file)
+ branch <- json2dataframe(json_branch)
+ expect_equal(dim(branch), c(304, 33))
+ branch <- filter_neurite(branch)
+ expect_equal(dim(branch), c(35, 33))
+})

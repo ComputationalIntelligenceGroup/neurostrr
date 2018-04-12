@@ -67,6 +67,8 @@ nrow(axon)
 
 We can merge branch and node data, and, for example, easily summarize node metrics across branches. For example, we compute the mean node length of pre-terminal branches with: 
 
+Also, `filter_` functions.
+
 ```{r} 
 ```  
 ```{r, warning=FALSE, message=FALSE} 
