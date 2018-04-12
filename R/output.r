@@ -15,10 +15,13 @@ json2dataframe <- function(json) {
   stopifnot(!any(sapply(a, is.list)))
   a
 }
-
+is_2D <- function(x) {
+  length(dim(x)) == 2
+}
 #' Filter measures
 #' @export
 filter_id <- function(branch, keep = FALSE) {
+  if (!is_2D(branch)) return (branch)
   keep_columns <- c("neuron", "neurite", "neurite_type", "branch", "node")
   if (!keep) {
     keep_columns <-  setdiff(colnames(branch), keep_columns)
@@ -29,6 +32,7 @@ filter_id <- function(branch, keep = FALSE) {
 #' Filters either axon or dendritic measures.
 #' @export
 filter_neurite <- function(neuron, axon = TRUE) {
+  if (!is_2D(neuron)) return (neuron)
   if (!all(neuron$neurite_type %in% c('Axon', 'Dendrite', 'Apical'))) stop("Unknown neurite type.")
   ind_axon <- neuron$neurite_type == 'Axon'
   if (!axon) ind_axon <- !ind_axon # XOR?
@@ -37,6 +41,7 @@ filter_neurite <- function(neuron, axon = TRUE) {
 #' Filter trifurcations
 #' @export
 filter_trifurcations <- function(neuron, keep = FALSE) {
+  if (!is_2D(neuron)) return (neuron)
   # stopifnot(is_branch(neuron))
   ind <- neuron$N_descs < 3
   if (keep) ind <- !ind
@@ -45,6 +50,7 @@ filter_trifurcations <- function(neuron, keep = FALSE) {
 #' Filter branches
 #' @export
 filter_branches <- function(neuron) {
+  if (!is_2D(neuron)) return (neuron)
   neuron[!is.na(neuron[, 'length']), , drop = FALSE]
 }
 
