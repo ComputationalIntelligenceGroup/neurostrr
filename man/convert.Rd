@@ -4,8 +4,8 @@
 \alias{convert}
 \title{Converts a reconstruction to SWC or JSON.}
 \usage{
-convert(ifile, ofile, ext, eps = 0, correct = FALSE)
+convert(ifile, ext, eps = 0, correct = FALSE)
 }
 \description{
-Converts a reconstruction to SWC or JSON.
+Use resolved paths, i.e., not with ~ for the home directory.
 }

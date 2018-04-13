@@ -84,6 +84,8 @@ summarize(pre_terminal, mean(node_length))
 valid <- neurostr::json2dataframe(neurostr::validate(file))
 ```
 
+## Known issues
+Note that the paths passed as function arguments must be fully expanded. That is, `/home/user/neuron.swc` will work while `~/neuron.swc` will not.  
 
 ## Future work  
-Functionalities such as arbor simplifications are currently not available. **However, it is easy to do ..**  Say types are currently not exported 
+Functionalities such as arbor simplifications are currently not available. These may be added. 
