@@ -14,7 +14,7 @@ The package has only been tested on Ubuntu 16.04. It requires C++ 14.
 See the vignette for more details. `vignette('neurostr', 'neurostr')`. 
 
 ## How it works 
-The package simply contains all header and cpp files from NeuroSTR along with its dependencies (besides BH and Eigen). The current version contains code from **add a github tag** of NeuroSTR. 
+The package simply contains all header and cpp files from NeuroSTR along with its dependencies (besides those provided by BH and RcppEigen). 
 
 ## Known Issues  
 In order to build the package on Ubuntu 14.04, remove the SystemRequirements: C++14 line from DESCRIPTION and set R to use a compiler that defaults to C++14. 
