@@ -1,5 +1,5 @@
 # ignore makefile in the package 
-NEUROSTR_PATH=/home/bmihaljevic/code-others/cig-neurostr/
+NEUROSTR_PATH=/home/bmihaljevic/code-cig/cig-neurostr/
 
 import: 
 	rm -rf inst/include/* 
