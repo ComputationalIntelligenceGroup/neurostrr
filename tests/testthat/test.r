@@ -39,3 +39,11 @@ test_that("filter axon", {
  branch <- filter_neurite(branch)
  expect_equal(dim(branch), c(35, 33))
 })
+
+
+test_that("parse radius correctly", {
+ file <- system.file("extdata", "C030397A-P2.swc", package = "neurostr")
+ json_branch <- compute_node_features(file)
+ branch <- json2dataframe(json_branch)
+ expect_equal(branch$diameter[1], .899999 * 2, tolerance = 1e-5)
+})
